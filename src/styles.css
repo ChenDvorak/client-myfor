@@ -3,6 +3,10 @@
     font-size: 1rem;
 }
 
+body {
+    background-color: #f5f5f5 !important;
+}
+
 a:link  {
     color: #0000ee !important;
 }
