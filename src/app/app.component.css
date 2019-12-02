@@ -1,0 +1,16 @@
+.div-base-page {
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    padding: .4rem 1rem;
+}
+
+nav > .div-user {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+}

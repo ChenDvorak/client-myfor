@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    font-size: 1rem;
+}
+
+a:link  {
+    color: #0000ee !important;
+}
+
+a:visited {
+    color: #551A8B !important;
+}
