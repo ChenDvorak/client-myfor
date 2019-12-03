@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ThemesListComponent implements OnInit {
 
+  detailId = 0;
   listHeight = '80%';
   themes: ThemeItem[] = [];
 
@@ -31,7 +32,6 @@ export class ThemesListComponent implements OnInit {
   }
 
   private getThemes(index: number, search: string) {
-    console.log('get themes');
     this.theme.getThemes(index, 20, search)
       .subscribe((data) => {
         this.themes = data.data.list;
@@ -51,5 +51,13 @@ export class ThemesListComponent implements OnInit {
 
     this.router.navigate(['/themes', {search}]);
     this.getThemes(1, search);
+  }
+
+  /**
+   * 显示主题
+   * @param id 主题 ID
+   */
+  showDetail(id: number) {
+    this.detailId = id;
   }
 }

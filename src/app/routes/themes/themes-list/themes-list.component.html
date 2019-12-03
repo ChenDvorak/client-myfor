@@ -16,7 +16,7 @@
       <ul>
         <li class="li-themes-item" *ngFor="let theme of themes">
           <div>
-            <a class="a-theme-title" routerLink="/themes/{{theme.id}}">{{theme.name}}</a>
+            <a class="a-theme-title" (click)="showDetail(theme.id)">{{theme.name}}</a>
             <span class="spn-master">题主: {{theme.master}}</span>
           </div>
           <div class="div-theme-sub">
@@ -26,7 +26,7 @@
       </ul>
     </div>
     <div nz-col [nzSpan]="12" [ngStyle]="{height: listHeight}">
-      <app-theme-detail></app-theme-detail>
+      <app-theme-detail [id]="detailId"></app-theme-detail>
     </div>
   </div>
 </div>
