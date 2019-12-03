@@ -48,10 +48,12 @@
 }
 
 .spn-master {
+  font-size: .9rem;
   float: right;
 }
 
 .li-themes-item>.div-theme-sub {
   display: flex;
   flex-direction: row;
+  font-size: .9rem;
 }
