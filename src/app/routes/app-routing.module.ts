@@ -7,8 +7,16 @@ import { LoginComponent } from './home/login/login.component';
 const appRoutes: Routes = [
     { path: 'home', component: IndexComponent },
     { path: 'login', component: LoginComponent },
+    {
+      path: 'themes',
+      loadChildren: () => import('./themes/themes.module').then(mod => mod.ThemesModule)
+    },
+    {
+      path: 'pages',
+      loadChildren: () => import('./pages/pages.module').then(mod => mod.PagesModule)
+    },
     { path: '', component: IndexComponent, pathMatch: 'full' },
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: '/pages/404' }
   ];
 
 @NgModule({

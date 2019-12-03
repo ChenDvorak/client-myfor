@@ -1,16 +1,27 @@
 .div-base-page {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 nav {
-    display: flex;
-    width: 100%;
-    padding: .4rem 1rem;
+  display: flex;
+  width: 100%;
+  padding: .4rem 1rem;
 }
 
-nav > .div-user {
-    display: flex;
-    flex-direction: row-reverse;
-    width: 100%;
+nav>.a-title {
+  font-size: 1.5rem;
+  margin-left: .5rem;
+}
+
+nav>.div-user {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  padding: .2rem;
 }

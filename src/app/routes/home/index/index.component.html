@@ -1,1 +1,50 @@
-<p>index works!</p>
+<div class="div-home-page">
+  <div nz-row class="div-home-search">
+    <div nz-col class="div-search">
+      <input type="text" placeholder="搜索" />
+      <button class="btn" type="button">搜索</button>
+    </div>
+  </div>
+  <div class="div-home-list" nz-row nzGutter="16">
+    
+    <div nz-col [nzXs]="{span: 22, offset: 1}" [nzSm]="{span: 20, offset: 2}" [nzMd]="{span: 5, offset: 3}">
+      <div class="div-list">
+        <span class="title">热门主题</span>
+        <a [routerLink]="['/themes', {state: 'hot'}]">更多</a>
+        <ul>
+          <li *ngFor="let theme of themes">
+            <a routerLink="/themes/{{theme.id}}">{{theme.name}}</a>
+            <span class="spn-info-bottom">帖子数: {{theme.postsCount}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div nz-col [nzXs]="{span: 22, offset: 1}" [nzSm]="{span: 20, offset: 2}" [nzMd]="{span: 7, offset: 0}">
+      <div class="div-list">
+        <span class="title">热门帖子</span>
+        <a [routerLink]="['/posts', {state: 'hot'}]">更多</a>
+        <ul>
+          <li *ngFor="let post of posts">
+            <a routerLink="/posts/{{post.id}}">{{post.name}}</a>
+            <span class="spn-info-bottom">点赞数: {{post.likes}} &nbsp;&nbsp; 评论数: {{post.comments}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div nz-col [nzXs]="{span: 22, offset: 1}" [nzSm]="{span: 20, offset: 2}" [nzMd]="{span: 5, offset: 0}">
+      <div class="div-list">
+        <span class="title">最新段子</span>
+        <a [routerLink]="['/segments', {state: 'hot'}]">更多</a>
+        <ul>
+          <li *ngFor="let segment of segments">
+            <a routerLink="/segments/{{segment.id}}">
+              {{segment.content}}
+            </a>
+            <span class="spn-info-bottom">点赞数: {{segment.likes}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div nz-col [nzSm]="1" [nzMd]="{span: 3}"></div>
+  </div>
+</div>

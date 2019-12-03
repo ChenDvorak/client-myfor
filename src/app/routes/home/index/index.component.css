@@ -1,0 +1,49 @@
+:host {
+  height: 100%;
+}
+
+.div-home-page {
+  height: 100%;
+  padding: 1rem .5rem;
+}
+
+.div-home-page>.div-home-search {
+  text-align: center;
+}
+
+.div-home-page>.div-home-list {
+  padding: 5rem .3rem;
+}
+
+.title {
+  font-size: 1.1rem;
+  margin-bottom: .5em;
+  color: rgba(0, 0, 0, .85);
+  font-weight: 500;
+}
+
+.title+a {
+  font-size: .9rem;
+  margin-left: .5rem;
+}
+
+.div-list {
+  margin-bottom: .5rem;
+  padding: .2rem;
+  border-bottom: 1px solid #aaa;
+}
+
+ul {
+  margin-top: .5rem;
+  padding-left: 0;
+}
+
+ul>li {
+  display: flex;
+  flex-direction: column;
+  margin: .5rem 0;
+}
+
+.spn-info-bottom {
+  font-size: .8rem;
+}

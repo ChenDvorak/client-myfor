@@ -1,9 +1,14 @@
 <div class="div-base-page">
   <nav>
-    <a [routerLink]="['/home']">myFor</a>
+    <a class="a-title" [routerLink]="['/home']">
+      myFor
+      <!-- <img src="assets/images/myFor.png" alt="myFor" width="45px"> -->
+    </a>
     <div class="div-user" [ngSwitch]="isLogged">
       <a *ngSwitchCase="false" [routerLink]="['/login']">登录</a>
+      <a *ngSwitchCase="true">{{userName}}</a>
     </div>
   </nav>
   <router-outlet></router-outlet>
 </div>
+<footer>Copyright&nbsp;All Rights Reserved</footer>

@@ -1,0 +1,57 @@
+.div-theme-base {
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.div-row-title {
+  margin-bottom: 1rem;
+}
+
+.div-title {
+  display: flex;
+  align-items: flex-end;
+}
+
+.div-title>.div-search {
+  margin: 0 0 .3rem 3rem;
+}
+
+.div-title>.spn-title {
+  font-size: 1.5rem;
+  height: 100%;
+  margin: 0 0 .3rem 1rem;
+}
+
+.div-row-list {
+  height: 100%;
+  background-color: #fffdfd;
+  margin-top: 1rem;
+}
+
+.div-col-themes {
+  height: 100%;
+  padding: 0 1rem;
+  border: 1px solid #aaa;
+  overflow: auto;
+}
+
+.li-themes-item {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+  padding-bottom: .3rem;
+  border-bottom: 1px solid #aaa;
+}
+
+.a-theme-title {
+  font-size: 1.2rem;
+}
+
+.spn-master {
+  float: right;
+}
+
+.li-themes-item>.div-theme-sub {
+  display: flex;
+  flex-direction: row;
+}
