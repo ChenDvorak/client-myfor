@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PostsListComponent implements OnInit {
 
+  detailId = 0;
   posts: PostItem[] = [];
   listHeight = '80%';
 
@@ -27,7 +28,7 @@ export class PostsListComponent implements OnInit {
     const search = this.route.snapshot.paramMap.get('search');
     this.getPosts(index, search);
 
-    this.listHeight = window.innerHeight * 0.8 + 'px';
+    this.listHeight = window.innerHeight * 0.75 + 'px';
   }
 
   private getPosts(index: number, search: string) {
@@ -38,6 +39,22 @@ export class PostsListComponent implements OnInit {
   }
 
   searchPosts(search: string) {
+    if (search) {
+      this.router.navigate(['/posts', {search}]);
+    } else {
+      this.router.navigate(['/posts']);
+    }
+  }
 
+  showDetail(id: number) {
+    this.detailId = id;
+  }
+
+  pageChange(index: number) {
+    const newParams = {
+      ...this.route.snapshot.params,
+      index
+    };
+    this.router.navigate(['/posts', newParams]);
   }
 }

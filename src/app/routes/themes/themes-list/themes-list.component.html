@@ -14,24 +14,30 @@
   </div>
   <!-- 列表 -->
   <div class="div-row-list" nz-row>
-    <div class="div-col-themes" nz-col [nzSpan]="12" [ngStyle]="{height: listHeight}">
-      <ul>
-        <li class="li-themes-item" *ngFor="let theme of themes">
-          <div>
-            <a class="a-theme-title" (click)="showDetail(theme.id)">{{theme.name}}</a>
-            <span class="spn-date">{{theme.createDate}}</span>
-            <span class="spn-master">题主: {{theme.master}}</span>
-          </div>
-          <div class="div-theme-sub">
-            <span class="w100">
-              帖子数: {{theme.postsCount}}
-            </span>
-            <span class="w100">
-              <a target="_blank" routerLink="/themes/{{theme.id}}">新窗口中打开</a>
-            </span>
-          </div>
-        </li>
-      </ul>
+    <div class="div-col-themes" nz-col [nzSpan]="12">
+      <div class="div-list" [ngStyle]="{height: listHeight}">
+        <ul>
+          <li class="li-themes-item" *ngFor="let theme of themes">
+            <div>
+              <a class="a-theme-title" (click)="showDetail(theme.id)">{{theme.name}}</a>
+              <span class="spn-date">{{theme.createDate}}</span>
+              <span class="spn-master">题主: {{theme.master}}</span>
+            </div>
+            <div class="div-theme-sub">
+              <span class="w100">
+                帖子数: {{theme.postsCount}}
+              </span>
+              <span class="w100">
+                <a target="_blank" routerLink="/themes/{{theme.id}}">新窗口中打开</a>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="div-pagination">
+        <nz-pagination [nzTotal]="50" [nzPageSize]="20" [nzSize]="'small'" (nzPageIndexChange)="pageChange($event)">
+        </nz-pagination>
+      </div>
     </div>
     <div class="div-col-detail" nz-col [nzSpan]="12" [ngStyle]="{height: listHeight}">
       <app-theme-detail [id]="detailId"></app-theme-detail>

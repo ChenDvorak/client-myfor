@@ -1,41 +1,45 @@
 <div class="div-post-base">
-        <!-- 主题 -->
-        <div class="div-row-title" nz-row>
-          <div class="div-title" nz-col>
-            <a routerLink="/">
-              <img src="assets/images/myFor.png" alt="myFor" width="80px">
-            </a>
-            <span class="spn-title">帖子列表</span>
-            <div class="div-search">
-              <input type="text" #txt_search placeholder="搜索帖子" />
-              <button class="btn" (click)="searchPosts(txt_search.value)">搜索帖子</button>
-            </div>
-          </div>
-        </div>
-        <!-- 列表 -->
-        <div class="div-row-list" nz-row>
-          <div class="div-col-posts" nz-col [nzSpan]="12" [ngStyle]="{height: listHeight}">
-            <ul>
-              <li class="li-posts-item" *ngFor="let post of posts">
-                <div>
-                  <a class="a-post-title" (click)="showDetail(post.id)">{{post.name}}</a>
-                  <span class="spn-date">{{post.createDate}}</span>
-                  <span class="spn-master">贴主: {{post.creator}}</span>
-                </div>
-                <div class="div-post-sub">
-                  <span class="w100">
-                    点赞数: {{post.likes}}
-                  </span>
-                  <span class="w100">
-                    <a target="_blank" routerLink="/posts/{{post.id}}">新窗口中打开</a>
-                  </span>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="div-col-detail" nz-col [nzSpan]="12" [ngStyle]="{height: listHeight}">
-            <app-post-detail [id]="detailId"></app-post-detail>
-          </div>
-        </div>
+  <!-- 主题 -->
+  <div class="div-row-title" nz-row>
+    <div class="div-title" nz-col>
+      <a routerLink="/">
+        <img src="assets/images/myFor.png" alt="myFor" width="80px">
+      </a>
+      <span class="spn-title">帖子列表</span>
+      <div class="div-search">
+        <input type="text" #txt_search placeholder="搜索帖子" />
+        <button class="btn" (click)="searchPosts(txt_search.value)">搜索帖子</button>
       </div>
-      
+    </div>
+  </div>
+  <!-- 列表 -->
+  <div class="div-row-list" nz-row>
+    <div class="div-col-posts" nz-col [nzSpan]="12">
+      <div class="div-list" [ngStyle]="{height: listHeight}">
+        <ul>
+          <li class="li-posts-item" *ngFor="let post of posts">
+            <div>
+              <a class="a-post-title" (click)="showDetail(post.id)">{{post.name}}</a>
+              <span class="spn-date">{{post.createDate}}</span>
+              <span class="spn-master">贴主: {{post.creator}}</span>
+            </div>
+            <div class="div-post-sub">
+              <span class="w100">
+                点赞数: {{post.likes}}
+              </span>
+              <span class="w100">
+                <a target="_blank" routerLink="/posts/{{post.id}}">新窗口中打开</a>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="div-pagination">
+        <nz-pagination [nzTotal]="50" [nzPageSize]="20" [nzSize]="'small'" (nzPageIndexChange)="pageChange($event)"></nz-pagination>
+      </div>
+    </div>
+    <div class="div-col-detail" nz-col [nzSpan]="12" [ngStyle]="{height: listHeight}">
+      <app-post-detail [id]="detailId"></app-post-detail>
+    </div>
+  </div>
+</div>

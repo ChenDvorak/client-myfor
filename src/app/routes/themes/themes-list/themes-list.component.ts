@@ -28,7 +28,7 @@ export class ThemesListComponent implements OnInit {
     const search = this.route.snapshot.paramMap.get('search');
     this.getThemes(index, search);
 
-    this.listHeight = window.innerHeight * 0.8 + 'px';
+    this.listHeight = window.innerHeight * 0.75 + 'px';
   }
 
   private getThemes(index: number, search: string) {
@@ -59,5 +59,13 @@ export class ThemesListComponent implements OnInit {
    */
   showDetail(id: number) {
     this.detailId = id;
+  }
+
+  pageChange(index: number) {
+    const newParams = {
+      ...this.route.snapshot.params,
+      index
+    };
+    this.router.navigate(['/themes', newParams]);
   }
 }

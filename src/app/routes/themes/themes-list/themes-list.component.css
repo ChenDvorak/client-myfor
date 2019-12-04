@@ -30,9 +30,14 @@
 
 .div-col-themes {
   height: 100%;
-  padding: 0 1rem;
+  /* padding: 0 1rem; */
   border: 1px solid #aaa;
+  /* overflow: auto; */
+}
+
+.div-list {
   overflow: auto;
+  padding: 0 1rem;
 }
 
 .li-themes-item {

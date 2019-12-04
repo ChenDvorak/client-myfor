@@ -21,7 +21,9 @@ export interface PostItem {
 }
 
 export interface PostDetail {
-  name: string;
+  title: string;
+  theme: string;
+  content: string;
   creator: string;
   createDate: string;
   likes: number;

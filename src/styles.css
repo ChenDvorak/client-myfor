@@ -35,3 +35,8 @@ a:visited {
 .btn-primary {
   background-color: #40a9ff;
 }
+
+.div-pagination {
+  padding: .5rem 0;
+  box-shadow: 0 -7px 5px -5px #aaa;
+}

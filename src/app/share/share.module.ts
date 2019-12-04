@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 import { CommonModule } from '@angular/common';
 import { BackComponent } from './back/back.component';
@@ -10,7 +11,8 @@ const COMPONENTS = [
 ];
 
 const EXPORT_MODULE = [
-  NzGridModule
+  NzGridModule,
+  NzPaginationModule
 ];
 
 @NgModule({
