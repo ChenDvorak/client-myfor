@@ -20,6 +20,19 @@ export interface PostItem {
   likes: number;
 }
 
+export interface PostDetail {
+  name: string;
+  creator: string;
+  createDate: string;
+  likes: number;
+  comments: Comment[];
+}
+
+export interface Comment {
+  id: number;
+  comment: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -55,13 +68,27 @@ export class PostsService {
       }
 
     const url = `assets/mocks/posts.json`;
-      // const url = `client/api/themes?${params.toString()}`;
+      // const url = `client/api/posts?${params.toString()}`;
     return this.http.get<Result<Paginator<PostItem>>>(url)
         .pipe(
           debounceTime(500),
           retry(2),
           catchError(this.base.handleError)
         );
+  }
 
+  /**
+   * 获取帖子详情
+   * @param id ID
+   */
+  getPostDetail(id: number): Observable<Result<PostDetail>> {
+    const url = `assets/mocks/post.json`;
+    // const url = `client/api/posts/${1}`;
+    return this.http.get<Result<PostDetail>>(url)
+      .pipe(
+        debounceTime(500),
+          retry(2),
+          catchError(this.base.handleError)
+      );
   }
 }

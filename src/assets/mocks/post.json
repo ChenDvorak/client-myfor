@@ -1,0 +1,20 @@
+{
+    "message": "",
+    "data": {
+        "name": "个球主题",
+        "likes": 10,
+        "postsCount": 100,
+        "creator": "创建人",
+        "createDate": "2019-05-05",
+        "comments": [
+            {
+                "id": 1,
+                "comment": "不怎么样"
+            },
+            {
+                "id": 1,
+                "comment": "不怎么样"
+            }
+        ]
+    }
+}
