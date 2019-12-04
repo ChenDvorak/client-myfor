@@ -4,14 +4,20 @@
     <span>
       <p>所属主题 : {{detail.theme}}</p>
     </span>
-    <span>
-      <p>发帖人 : {{detail.creator}}</p>
-    </span>
-    <span>
-      <p>发帖时间 : {{detail.createDate}}</p>
-    </span>
-    <markdown>
-      {{detail.content}}
-    </markdown>
+    <div>
+      <span>发帖人 : {{detail.creator}}</span>
+      <span style="margin-left: 2rem;">发帖时间 : {{detail.createDate}}</span>
+    </div>
+    <div class="div-content">
+      <markdown>
+        {{detail.content}}
+      </markdown>
+    </div>
+    <div class="div-likes">
+      <button class="btn">点赞: {{detail.likes}}</button>
+    </div>
+    <div class="div-comments">
+
+    </div>
   </div>
 </div>
