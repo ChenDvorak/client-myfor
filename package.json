@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "ng-zorro-antd": "^8.5.2",
+    "ngx-markdown": "^8.2.1",
+    "prismjs": "^1.17.1",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

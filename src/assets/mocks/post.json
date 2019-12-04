@@ -3,7 +3,7 @@
     "data": {
         "title": "个球帖子",
         "theme": "个球主题",
-        "content": "个球内容\r\n个球内容\r个球内容\n个球内容",
+        "content": "## 个球内容\r\n个球内容\r个球内容\n个球内容```html <div></div> ```",
         "likes": 10,
         "state": {
             "key": 1,

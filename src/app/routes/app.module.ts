@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 
+import { MarkdownModule } from 'ngx-markdown';
+
 // import { ShareModule } from '../share/share.module';
 
 import { IndexComponent } from './home/index/index.component';
@@ -32,6 +34,7 @@ registerLocaleData(zh);
     FormsModule,
     HttpClientModule,
     NzGridModule,
+    MarkdownModule.forRoot()
     // ShareModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
