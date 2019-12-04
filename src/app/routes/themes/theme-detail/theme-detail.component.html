@@ -1,2 +1,20 @@
-<p>theme-detail works!</p>
-<app-back [value]="'返回'" [hidden]="!showBack"></app-back>
+<div class="div-detail-base">
+  <div *ngIf="detail">
+    <h1>{{detail.name}}
+      <p><small>描述: {{detail.description}}</small></p>
+    </h1>
+    <span>
+      <p>帖子数量: {{detail.postsCount}}</p>
+    </span>
+    <span>
+      <p>当前题主: {{detail.master}}</p>
+    </span>
+    <span>
+      <p>创建人: {{detail.creator}}</p>
+    </span>
+    <span>
+      <p>创建日期: {{detail.createDate}}</p>
+    </span>
+  </div>
+  <app-back [value]="'返回'" [hidden]="!showBack" [link]="'/themes'"></app-back>
+</div>

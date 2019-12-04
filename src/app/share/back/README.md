@@ -11,3 +11,8 @@ value: 按钮显示的文本
 ```html
 <app-back [value]="'显示的文本'"></app-back>
 ```
+
+link: 返回的导航路由, 可以不赋值, 不赋值就执行浏览器的后退操作
+```html
+<app-back [value]="'显示的文本'" [link]="'/themes'"></app-back>
+```

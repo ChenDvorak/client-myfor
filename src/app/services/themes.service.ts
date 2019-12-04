@@ -24,6 +24,18 @@ export interface ThemeItem {
   postsCount: number;
 }
 
+/**
+ * 主题详情
+ */
+export interface ThemeDetail {
+  name: string;
+  description: string;
+  master: string;
+  postsCount: number;
+  creator: string;
+  createDate: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -66,6 +78,19 @@ export class ThemesService {
           retry(2),
           catchError(this.base.handleError)
         );
+  }
 
+  /**
+   * 获取主题详情
+   * @param id 详情 ID
+   */
+  getThemeDetail(id: number): Observable<Result<ThemeDetail>> {
+    const url = `assets/mocks/theme.json`;
+    return this.http.get<Result<ThemeDetail>>(url)
+      .pipe(
+        debounceTime(500),
+          retry(2),
+          catchError(this.base.handleError)
+      );
   }
 }

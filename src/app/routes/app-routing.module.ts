@@ -8,6 +8,10 @@ const appRoutes: Routes = [
     { path: 'home', component: IndexComponent },
     { path: 'login', component: LoginComponent },
     {
+      path: 'posts',
+      loadChildren: () => import('./posts/posts.module').then(mod => mod.PostsModule)
+    },
+    {
       path: 'themes',
       loadChildren: () => import('./themes/themes.module').then(mod => mod.ThemesModule)
     },

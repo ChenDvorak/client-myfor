@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { ThemesService, ThemeDetail } from '../../../services/themes.service';
+
 @Component({
   selector: 'app-theme-detail',
   templateUrl: './theme-detail.component.html',
@@ -9,19 +11,21 @@ import { ActivatedRoute } from '@angular/router';
 export class ThemeDetailComponent implements OnInit {
 
   private currentId = 0;
+  detail: ThemeDetail;
   showBack = false;
 
   // tslint:disable-next-line: variable-name
   @Input() set id(_id: number) {
-    console.log('detail: ' + _id);
     if (this.currentId === _id) {
       return;
     }
     this.currentId = _id;
+    this.getThemeDetail();
   }
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private theme: ThemesService
   ) { }
 
   ngOnInit() {
@@ -32,7 +36,17 @@ export class ThemeDetailComponent implements OnInit {
     }
   }
 
-  getThemeDetail() {
+  /**
+   * 获取详情
+   */
+  private getThemeDetail() {
+    if (!this.currentId) {
+      return;
+    }
 
+    this.theme.getThemeDetail(this.currentId)
+      .subscribe((data) => {
+        this.detail = data.data;
+      });
   }
 }

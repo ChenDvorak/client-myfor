@@ -24,6 +24,10 @@ a:visited {
   color: #551A8B !important;
 }
 
+.w100 {
+  width: 100% !important;
+}
+
 .btn {
   background-color: white;
 }

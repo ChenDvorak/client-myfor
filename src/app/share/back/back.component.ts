@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-back',
@@ -10,12 +11,18 @@ export class BackComponent {
 
   @Input()
   value = '返回';
+  @Input() link = '';
 
   constructor(
-    private location: Location
+    private location: Location,
+    private router: Router
   ) { }
 
   back() {
-    this.location.back();
+    if (this.link) {
+      this.router.navigate([this.link]);
+    } else {
+      this.location.back();
+    }
   }
 }

@@ -20,12 +20,17 @@
             <span class="spn-master">题主: {{theme.master}}</span>
           </div>
           <div class="div-theme-sub">
-            帖子数: {{theme.postsCount}}
+            <span class="w100">
+              帖子数: {{theme.postsCount}}
+            </span>
+            <span class="w100">
+              <a target="_blank" routerLink="/themes/{{theme.id}}">新窗口中打开</a>
+            </span>
           </div>
         </li>
       </ul>
     </div>
-    <div nz-col [nzSpan]="12" [ngStyle]="{height: listHeight}">
+    <div class="div-col-detail" nz-col [nzSpan]="12" [ngStyle]="{height: listHeight}">
       <app-theme-detail [id]="detailId"></app-theme-detail>
     </div>
   </div>

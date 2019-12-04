@@ -57,3 +57,12 @@
   flex-direction: row;
   font-size: .9rem;
 }
+
+.div-theme-sub a {
+  font-size: .9rem;
+  float: right;
+}
+
+.div-col-detail {
+  border: 2px solid #aaa;
+}
