@@ -52,6 +52,11 @@
   float: right;
 }
 
+.spn-date {
+  font-size: .7rem;
+  margin-left: .5rem;
+}
+
 .li-themes-item>.div-theme-sub {
   display: flex;
   flex-direction: row;

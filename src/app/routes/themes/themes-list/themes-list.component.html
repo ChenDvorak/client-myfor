@@ -2,7 +2,9 @@
   <!-- 主题 -->
   <div class="div-row-title" nz-row>
     <div class="div-title" nz-col>
-      <img src="assets/images/myFor.png" alt="myFor" width="80px">
+      <a routerLink="/">
+        <img src="assets/images/myFor.png" alt="myFor" width="80px">
+      </a>
       <span class="spn-title">主题列表</span>
       <div class="div-search">
         <input type="text" #txt_search placeholder="搜索主题" />
@@ -17,6 +19,7 @@
         <li class="li-themes-item" *ngFor="let theme of themes">
           <div>
             <a class="a-theme-title" (click)="showDetail(theme.id)">{{theme.name}}</a>
+            <span class="spn-date">{{theme.createDate}}</span>
             <span class="spn-master">题主: {{theme.master}}</span>
           </div>
           <div class="div-theme-sub">

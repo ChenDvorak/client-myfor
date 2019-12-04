@@ -21,6 +21,7 @@ export interface ThemeItem {
   id: number;
   name: string;
   master: string;
+  createDate: string;
   postsCount: number;
 }
 
