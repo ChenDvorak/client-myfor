@@ -1,11 +1,19 @@
 <div class="div-post-base">
   <div *ngIf="detail">
     <h1>{{detail.title}}</h1>
-    <span><p>所属主题 : {{detail.theme}}</p></span>
-    <span><p>发帖人 : {{detail.creator}}</p></span>
-    <span><p>发帖时间 : {{detail.createDate}}</p></span>
+    <span>
+      <p>所属主题 : {{detail.theme}}</p>
+    </span>
+    <span>
+      <p>发帖人 : {{detail.creator}}</p>
+    </span>
+    <span>
+      <p>发帖时间 : {{detail.createDate}}</p>
+    </span>
     <div>
+      <div>
         {{detail.content}}
+      </div>
     </div>
   </div>
 </div>
