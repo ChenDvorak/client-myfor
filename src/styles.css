@@ -28,11 +28,21 @@ a:visited {
 .btn {
   min-width: 90px;
   background-color: white;
+  border: 1px solid #aaa;
+}
+
+.btn:active {
+  background-color: #bae7ff;
 }
 
 .btn-primary {
   min-width: 90px;
   background-color: #40a9ff;
+  border: 1px solid #aaa;
+}
+
+.btn-primary:active {
+  background-color: #fff;
 }
 
 .btn-disabled {
