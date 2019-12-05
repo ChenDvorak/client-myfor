@@ -24,6 +24,11 @@ export interface Comment {
   comment: string;
 }
 
+/**
+ * 请求失败, 可以和 Result 的 data 对比
+ */
+export const FAULT = undefined;
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,7 +49,7 @@ export class BaseService {
     //     'Something bad happened; please try again later.');
     const result: Result = {
       message: '请求失败',
-      data: {}
+      data: FAULT
     };
     return of(result);
   }

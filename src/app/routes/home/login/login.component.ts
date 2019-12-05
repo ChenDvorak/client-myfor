@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { AccountsService, LoginInfo, RegisterInfo } from '../../../services/accounts.service';
+import { FAULT } from '../../../services/common';
 
 @Component({
   selector: 'app-login',
@@ -53,17 +57,37 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private account: AccountsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
   }
 
   login() {
+    if (this.loginForm.invalid) {
+      alert('登录参数有误');
+      return;
+    }
 
+    this.loginText = `登陆中...`;
+    const info: LoginInfo = {
+      account: this.loginForm.get('account').value,
+      password: this.loginForm.get('password').value
+    };
+    this.account.login(info)
+      .subscribe((data) => {
+        if (data.data === FAULT) {
+          alert('登录失败');
+          this.loginText = '登录';
+        } else {
+          this.router.navigateByUrl('/');
+        }
+      });
   }
 
   register() {
-
+    this.registerText = `注册中...`;
   }
 }
