@@ -13,11 +13,17 @@
         {{detail.content}}
       </markdown>
     </div>
-    <div class="div-likes">
-      <button class="btn">点赞: {{detail.likes}}</button>
-    </div>
+    <button class="btn" [class.btn-disabled]="detail.isLiked" [disabled]="detail.isLiked" (click)="like()">点赞:
+      {{detail.likes}}</button>
     <div class="div-comments">
-
+      <h2>评论</h2>
+      <ul>
+        <li class="li-comment" *ngFor="let comment of detail.comments">
+          {{comment.comment}}
+        </li>
+        <br />
+        <a href="javascript:;" *ngIf="detail.hasMoreComments" (click)="getMoreComments()">更多评论...</a>
+      </ul>
     </div>
   </div>
 </div>

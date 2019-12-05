@@ -9,8 +9,7 @@ import { Router } from '@angular/router';
 })
 export class BackComponent {
 
-  @Input()
-  value = '返回';
+  @Input() value = '返回';
   @Input() link = '';
 
   constructor(

@@ -27,11 +27,15 @@ export interface PostDetail {
   creator: string;
   createDate: string;
   likes: number;
+  isLiked: boolean;
   comments: Comment[];
+  hasMoreComments: boolean;
 }
 
 export interface Comment {
   id: number;
+  nickName: string;
+  date: string;
   comment: string;
 }
 
@@ -89,8 +93,18 @@ export class PostsService {
     return this.http.get<Result<PostDetail>>(url)
       .pipe(
         debounceTime(500),
-          retry(2),
-          catchError(this.base.handleError)
+        retry(2),
+        catchError(this.base.handleError)
+      );
+  }
+
+  like(id: number): Observable<Result> {
+    const url = `client/api/posts/like/${id}`;
+    return this.http.post<Result>(url, '')
+      .pipe(
+        debounceTime(500),
+        retry(1),
+        catchError(this.base.handleError)
       );
   }
 }

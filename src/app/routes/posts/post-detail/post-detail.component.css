@@ -6,10 +6,14 @@
   padding-top: 3rem;
 }
 
-.div-likes {
-  
+.div-comments {
+  padding: .5rem;
+  border: 1px solid #aaa;
+  margin-top: 1rem;
+  background-color: #ffde9c;
 }
 
-.div-comments {
-
+.li-comment {
+  padding: .3rem;
+  border-bottom: 1px solid #777;
 }

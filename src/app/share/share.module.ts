@@ -17,7 +17,7 @@ const EXPORT_MODULE = [
 
 @NgModule({
   declarations: [
-    ...COMPONENTS
+    ...COMPONENTS,
   ],
   imports: [
     CommonModule,

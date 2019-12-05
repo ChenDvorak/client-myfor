@@ -12,6 +12,7 @@ export class PostDetailComponent implements OnInit {
 
   private currentId = 0;
   detail: PostDetail;
+  private currentCommentsIndex = 1;
   hideBack = true;
   // tslint:disable-next-line: variable-name
   @Input() set id(_id: number) {
@@ -37,10 +38,24 @@ export class PostDetailComponent implements OnInit {
     this.getPostDetail();
   }
 
-  getPostDetail() {
+  private getPostDetail() {
     this.post.getPostDetail(this.currentId)
       .subscribe((data) => {
         this.detail = data.data;
       });
+  }
+
+  /**
+   * 点赞
+   */
+  like() {
+
+  }
+
+  /**
+   * 获取更多评论
+   */
+  getMoreComments() {
+
   }
 }
