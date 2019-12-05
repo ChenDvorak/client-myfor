@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PostsListComponent implements OnInit {
 
+  theme = '';
   detailId = 0;
   posts: PostItem[] = [];
   listHeight = '80%';
@@ -26,24 +27,41 @@ export class PostsListComponent implements OnInit {
       index = +indexParam;
     }
     const search = this.route.snapshot.paramMap.get('search');
-    this.getPosts(index, search);
+    this.theme = this.route.snapshot.paramMap.get('theme');
+
+    this.getPosts(index, search, this.theme);
 
     this.listHeight = window.innerHeight * 0.75 + 'px';
   }
 
-  private getPosts(index: number, search: string) {
-    this.post.getPosts(index, 20, search)
+  private getPosts(index: number, search: string, theme: string) {
+    this.post.getPosts(index, 20, search, theme)
       .subscribe((data) => {
         this.posts = data.data.list;
       });
   }
 
   searchPosts(search: string) {
-    if (search) {
-      this.router.navigate(['/posts', {search}]);
-    } else {
-      this.router.navigate(['/posts']);
+
+    let param: any;
+    let themeParam = {};
+    if (this.theme) {
+      themeParam = {
+        theme: this.theme
+      };
     }
+
+    if (search) {
+      param = {
+        search,
+        ...themeParam
+      };
+    } else {
+      param = {
+        ...themeParam
+      };
+    }
+    this.router.navigate(['/posts', param]);
   }
 
   showDetail(id: number) {

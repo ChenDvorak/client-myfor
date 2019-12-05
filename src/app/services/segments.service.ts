@@ -3,12 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
-import { BaseService, Result } from './common';
+import { BaseService, Result, Comment } from './common';
 
 export interface HomePageSegmentItem {
   id: number;
   content: string;
   likes: number;
+}
+
+export interface SegmentItem {
+  id: number;
+  content: string;
+  likes: number;
+  date: string;
+  comments: Comment[];
 }
 
 @Injectable({

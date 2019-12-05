@@ -1,4 +1,6 @@
 <div class="div-post-base">
+  <app-back [hidden]="hideBack" [value]="'返回列表'" [link]="backLink" style="float: right;"></app-back>
+  <br/>
   <div *ngIf="detail">
     <h1>{{detail.title}}</h1>
     <span>
@@ -13,8 +15,8 @@
         {{detail.content}}
       </markdown>
     </div>
-    <button class="btn" [class.btn-disabled]="detail.isLiked" [disabled]="detail.isLiked" (click)="like()">点赞:
-      {{detail.likes}}</button>
+    <button class="btn" [class.btn-disabled]="detail.isLiked" [disabled]="detail.isLiked" (click)="like()">
+      点赞: {{detail.likes}}</button>
     <div class="div-comments">
       <h2>评论</h2>
       <ul>

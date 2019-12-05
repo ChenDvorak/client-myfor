@@ -19,7 +19,7 @@ export class BackComponent {
 
   back() {
     if (this.link) {
-      this.router.navigate([this.link]);
+      this.router.navigateByUrl(this.link);
     } else {
       this.location.back();
     }

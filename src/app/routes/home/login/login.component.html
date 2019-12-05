@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="div-login-base">
+  <div class="div-form">
+    <form class="fom-login" [formGroup]="loginForm">
+      <h2>登录</h2>
+      <input class="txt-account" type="text" formControlName="account" placeholder="请输入账号" />
+      <span class="error" *ngIf="loginAccountInvalid">账号有误, 账号最少 4 位, 最长 20 位</span>
+      <input class="txt-password" type="password" formControlName="password" placeholder="请输入密码" />
+      <span class="error" *ngIf="loginPasswordInvalid">密码格式有误, 密码最少四位</span>
+      <button class="btn" [class.btn-disabled]="loginDisabled" type="button" [disabled]="loginDisabled" (click)="login()">{{loginText}}</button>
+    </form>
+    <form class="fom-register" [formGroup]="registerForm">
+      <h2>注册</h2>
+      <input class="txt-account" type="text" formControlName="account" placeholder="请输入账号" />
+      <span class="error" *ngIf="registerAccountInvalid">账号有误, 账号最少 4 位, 最长 20 位</span>
+      <input class="txt-password" type="password" formControlName="password" placeholder="请输入密码" />
+      <span class="error" *ngIf="registerPasswordInvalid">密码格式有误</span>
+      <input class="txt-password" type="password" formControlName="confirmPassword" placeholder="请再次输入密码" />
+      <span class="error" *ngIf="registerConfirmPasswordInvalid">两次密码不一致</span>
+      <button class="btn" [class.btn-disabled]="registerDisabled" type="button" [disabled]="registerDisabled" (click)="register()">{{registerText}}</button>
+    </form>
+  </div>
+</div>

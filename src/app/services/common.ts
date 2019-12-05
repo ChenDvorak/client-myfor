@@ -14,6 +14,15 @@ export interface Result < T = any > {
   message: string;
   data: T;
 }
+/**
+ * 评论
+ */
+export interface Comment {
+  id: number;
+  nickName: string;
+  date: string;
+  comment: string;
+}
 
 @Injectable({
   providedIn: 'root'

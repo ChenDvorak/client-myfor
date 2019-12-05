@@ -6,6 +6,7 @@
         <img src="assets/images/myFor.png" alt="myFor" width="80px">
       </a>
       <span class="spn-title">帖子列表</span>
+      <span class="spn-title" style="color: #770006;">{{theme ? '所属主题: ' + theme : '所有主题'}}</span>
       <div class="div-search">
         <input type="text" #txt_search placeholder="搜索帖子" />
         <button class="btn" (click)="searchPosts(txt_search.value)">搜索帖子</button>

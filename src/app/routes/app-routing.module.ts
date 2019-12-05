@@ -12,6 +12,10 @@ const appRoutes: Routes = [
       loadChildren: () => import('./posts/posts.module').then(mod => mod.PostsModule)
     },
     {
+      path: 'segments',
+      loadChildren: () => import('./segments/segments.module').then(mod => mod.SegmentsModule)
+    },
+    {
       path: 'themes',
       loadChildren: () => import('./themes/themes.module').then(mod => mod.ThemesModule)
     },
