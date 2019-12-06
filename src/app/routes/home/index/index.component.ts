@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ThemesService, HomePageThemeItem } from '../../../services/themes.service';
 import { PostsService, HomePagePostItem } from '../../../services/posts.service';
 import { SegmentsService, HomePageSegmentItem } from '../../../services/segments.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -17,7 +18,8 @@ export class IndexComponent implements OnInit {
   constructor(
     private theme: ThemesService,
     private post: PostsService,
-    private segment: SegmentsService
+    private segment: SegmentsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -45,5 +47,15 @@ export class IndexComponent implements OnInit {
       .subscribe((data) => {
         this.segments = data.data;
       });
+  }
+
+  /**
+   * 搜索
+   */
+  search(value: string) {
+    if (!value) {
+      return;
+    }
+    this.router.navigate(['/posts', {search: value}]);
   }
 }

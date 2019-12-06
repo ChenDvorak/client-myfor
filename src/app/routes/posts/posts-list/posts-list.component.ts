@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService, PostItem } from '../../../services/posts.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MfSnackBarService } from '../../../services/mf-snack-bar.service';
 
 @Component({
   selector: 'app-posts-list',
@@ -14,11 +15,14 @@ export class PostsListComponent implements OnInit {
   posts: PostItem[] = [];
   listHeight = '80%';
 
+  totalRows = 0;
+
   constructor(
     private post: PostsService,
     private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+    private snack: MfSnackBarService
+    ) { }
 
   ngOnInit() {
     let index = 1;
@@ -37,7 +41,12 @@ export class PostsListComponent implements OnInit {
   private getPosts(index: number, search: string, theme: string) {
     this.post.getPosts(index, 20, search, theme)
       .subscribe((data) => {
-        this.posts = data.data.list;
+        if (data.isFault) {
+          this.snack.open('获取失败, 请重试');
+        } else {
+          this.totalRows = data.data.totalRows;
+          this.posts = data.data.list;
+        }
       });
   }
 

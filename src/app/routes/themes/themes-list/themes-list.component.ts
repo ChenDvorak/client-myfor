@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemesService, ThemeItem } from '../../../services/themes.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MfSnackBarService } from '../../../services/mf-snack-bar.service';
 
 @Component({
   selector: 'app-themes-list',
@@ -13,10 +14,13 @@ export class ThemesListComponent implements OnInit {
   listHeight = '80%';
   themes: ThemeItem[] = [];
 
+  totalRows = 0;
+
   constructor(
     private theme: ThemesService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snack: MfSnackBarService
   ) { }
 
   ngOnInit() {
@@ -34,7 +38,12 @@ export class ThemesListComponent implements OnInit {
   private getThemes(index: number, search: string) {
     this.theme.getThemes(index, 20, search)
       .subscribe((data) => {
-        this.themes = data.data.list;
+        if (data.isFault) {
+          this.snack.open('获取失败, 请重试');
+        } else {
+          this.totalRows = data.data.totalRows;
+          this.themes = data.data.list;
+        }
       });
   }
 

@@ -1,0 +1,77 @@
+.div-segments-base {
+  margin-top: 1rem;
+  padding: 1rem;
+
+}
+
+.div-row-title {
+  margin-bottom: 1rem;
+}
+
+.div-title {
+  display: flex;
+  align-items: flex-end;
+}
+
+.div-title>.spn-title {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 20rem;
+  font-size: 1.5rem;
+  height: 100%;
+  margin: 0 0 .3rem 1.5rem;
+}
+
+.div-list {
+  width: 40rem;
+  min-width: 750px;
+  background-color: white;
+  border: 1px solid #aaa;
+  margin: auto;
+  padding: 2rem 1rem;
+}
+
+.div-order {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.div-order>a {
+  margin: .2rem .5rem;
+}
+
+.ul-segments {
+  border: 1px solid #aaa;
+  padding: .5rem;
+}
+
+.li-segment {
+  padding: .5rem 0;
+  margin: 0 1rem;
+  border-bottom: 1px solid #aaa;
+}
+
+.div-segment-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.div-segment-item>.div-nickname {
+  margin-bottom: .1rem;
+}
+
+.div-segment-item>.div-content {
+  color: black;
+  padding: .2rem .2rem .2rem 2rem;
+  margin-bottom: .1rem;
+}
+
+.div-segment-item>.div-date {
+  display: flex;
+  flex-direction: row;
+}
+
+.div-date>.spn-date {
+  flex-grow: 1;
+}

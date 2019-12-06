@@ -1,12 +1,14 @@
 <div class="div-home-page">
   <div nz-row class="div-home-search">
     <div nz-col class="div-search">
-      <input type="text" placeholder="搜索" />
-      <button class="btn" type="button">搜索</button>
+      <div class="div-search-block">
+        <input #txt_search type="text" placeholder="搜索" />
+        <button class="btn btn-search" type="button" (click)="search(txt_search.value)">搜索</button>
+      </div>
     </div>
   </div>
   <div class="div-home-list" nz-row nzGutter="16">
-    
+
     <div nz-col [nzXs]="{span: 22, offset: 1}" [nzSm]="{span: 20, offset: 2}" [nzMd]="{span: 5, offset: 3}">
       <div class="div-list">
         <span class="title">热门主题</span>

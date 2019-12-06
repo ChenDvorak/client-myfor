@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
-import { BaseService, Result, Comment } from './common';
+import { BaseService, Result, Comment, Paginator } from './common';
 
 export interface HomePageSegmentItem {
   id: number;
@@ -13,10 +13,10 @@ export interface HomePageSegmentItem {
 
 export interface SegmentItem {
   id: number;
+  nickName: string;
   content: string;
   likes: number;
   date: string;
-  comments: Comment[];
 }
 
 @Injectable({
@@ -32,6 +32,20 @@ export class SegmentsService {
   getHomePageSegments(): Observable<Result<HomePageSegmentItem[]>> {
     const url = `assets/mocks/home-page-segments.json`;
     return this.http.get<Result<HomePageSegmentItem[]>>(url)
+      .pipe(
+        retry(2),
+        catchError(this.base.handleError)
+      );
+  }
+
+  /**
+   * 获取段子分页
+   * @param index 当前页码
+   * @param rows 行数
+   */
+  getSegments(index: number, rows: number): Observable<Result<Paginator<SegmentItem>>> {
+    const url = `assets/mocks/segments.json`;
+    return this.http.get<Result<Paginator<SegmentItem>>>(url)
       .pipe(
         retry(2),
         catchError(this.base.handleError)

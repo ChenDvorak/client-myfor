@@ -41,8 +41,8 @@ a:visited {
 
 .btn-primary {
   min-width: 90px;
-  background-color: #40a9ff;
-  border: 1px solid #aaa;
+  background-color: #bae7ff;
+  border: 1px solid #4cafff;
 }
 
 .btn-primary:active {
@@ -75,3 +75,24 @@ a:visited {
   color: white;
   box-shadow: 0px 5px 4px -2px #666;
 }
+
+/* 搜索框 */
+.div-search-block {
+  display: flex;
+  width: 30%;
+  min-width: 300px;
+  padding: 1rem .3rem;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  margin: auto;
+}
+
+.div-search-block>input {
+  flex-grow: 1;
+}
+
+.div-search-block>.btn-search {
+  margin-left: -1px;
+}
+
+/* end */

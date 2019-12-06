@@ -9,8 +9,10 @@
         <span class="spn-sub">有问必答不知道</span>
       </span>
       <div class="div-search">
-        <input type="text" #txt_search placeholder="搜索帖子" />
-        <button class="btn" (click)="searchPosts(txt_search.value)">搜索帖子</button>
+        <div class="div-search-block">
+          <input type="text" #txt_search placeholder="搜索帖子" />
+          <button class="btn btn-search" (click)="searchPosts(txt_search.value)">搜索帖子</button>
+        </div>
       </div>
     </div>
     <span>帖子列表</span>
@@ -38,7 +40,8 @@
         </ul>
       </div>
       <div class="div-pagination">
-        <nz-pagination [nzTotal]="50" [nzPageSize]="20" [nzSize]="'small'" (nzPageIndexChange)="pageChange($event)"></nz-pagination>
+        <nz-pagination [nzTotal]="totalRows" [nzPageSize]="20" [nzSize]="'small'" (nzPageIndexChange)="pageChange($event)">
+        </nz-pagination>
       </div>
     </div>
     <div class="div-col-detail" nz-col [nzSpan]="12" [ngStyle]="{height: listHeight}">

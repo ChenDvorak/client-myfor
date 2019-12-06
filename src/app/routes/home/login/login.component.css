@@ -7,6 +7,7 @@
 .div-form {
   display: flex;
   flex-direction: column;
+  background-color: white;
   margin-top: 10rem;
   margin: auto;
   padding: 1rem .5rem;
