@@ -25,11 +25,12 @@
 
 .div-list {
   width: 40rem;
-  min-width: 750px;
+  min-width: 500px;
   background-color: white;
   border: 1px solid #aaa;
-  margin: auto;
-  padding: 2rem 1rem;
+  /* margin: auto; */
+  margin-left: 9%;
+  padding: 1rem 1rem;
 }
 
 .div-order {

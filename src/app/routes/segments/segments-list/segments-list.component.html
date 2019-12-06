@@ -6,6 +6,12 @@
         <img src="assets/images/myFor.png" alt="myFor" width="80px">
       </a>
       <span class="spn-title">段子</span>
+      <button class="btn" (click)="writeNewSegment()">写新段子</button>
+    </div>
+    <div *ngIf="writeSegment">
+      <form>
+        <input type="text" />
+      </form>
     </div>
   </div>
   <div class="div-list">
@@ -20,7 +26,7 @@
           <div class="div-content">{{segment.content}}</div>
           <div class="div-date">
             <span class="spn-date">{{segment.date}}</span>
-            <button class="btn-primary">同意 : {{segment.likes}}</button>
+            <button class="btn-primary" id="btn_{{segment.id}}" (click)="like(segment.id)">like : {{segment.likes}}</button>
           </div>
         </div>
       </li>
