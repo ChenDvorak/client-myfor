@@ -82,6 +82,8 @@ export class LoginComponent implements OnInit {
           alert('登录失败');
           this.loginText = '登录';
         } else {
+          //  将登录后的用户名存在 KEY 为 {USER_KEY} 的 localStorage 中
+          localStorage.setItem(this.account.USER_KEY, data.data);
           this.router.navigateByUrl('/');
         }
       });

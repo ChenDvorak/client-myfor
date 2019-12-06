@@ -29,7 +29,6 @@ export interface RegisterInfo {
 })
 export class AccountsService {
 
-  readonly USER_COOKIE_KEY = '';
   readonly USER_KEY = '5067f78f-abb5-431f-b764-c26bcc3275ca';
 
   constructor(
@@ -60,7 +59,8 @@ export class AccountsService {
    * @param info 登录信息
    */
   login(info: LoginInfo): Observable<Result<string>> {
-    const url = `client/api/login`;
+    const url = `assets/mocks/login.json`;
+    // const url = `client/api/login`;
     return this.http.patch<Result<string>>(url, info)
       .pipe(
         debounceTime(500),

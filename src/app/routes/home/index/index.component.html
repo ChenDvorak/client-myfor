@@ -13,7 +13,7 @@
         <a [routerLink]="['/themes', {state: 'hot'}]">更多</a>
         <ul>
           <li *ngFor="let theme of themes">
-            <a routerLink="/themes/{{theme.id}}">{{theme.name}}</a>
+            <a [routerLink]="['/posts', {theme: theme.name}]">{{theme.name}}</a>
             <span class="spn-info-bottom">帖子数: {{theme.postsCount}}</span>
           </li>
         </ul>

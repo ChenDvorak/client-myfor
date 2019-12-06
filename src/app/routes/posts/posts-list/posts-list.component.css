@@ -17,9 +17,19 @@
 }
 
 .div-title>.spn-title {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 20rem;
+  color: #770006;
   font-size: 1.5rem;
   height: 100%;
-  margin: 0 0 .3rem 1rem;
+  margin: 0 0 .3rem 1.5rem;
+}
+
+.spn-title>.spn-sub {
+  font-size: .8rem;
+  color: #777;
 }
 
 .div-row-list {
