@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { timer } from 'rxjs';
 
 import { AccountsService, LoginInfo, RegisterInfo } from '../../../services/accounts.service';
 import { FAULT } from '../../../services/common';
+import { MfSnackBarService } from '../../../services/mf-snack-bar.service';
 
 @Component({
   selector: 'app-login',
@@ -27,11 +29,14 @@ export class LoginComponent implements OnInit {
   }
 
   registerText = '注册';
+  // tslint:disable-next-line: variable-name
+  private register_Disabled = false;
   /**
    * 注册按钮是否禁用
    */
   get registerDisabled() {
-    return this.registerForm.get('account').invalid ||
+    return this.register_Disabled ||
+    this.registerForm.get('account').invalid ||
     this.registerForm.get('password').invalid ||
     this.registerForm.get('password').value !== this.registerForm.get('confirmPassword').value;
   }
@@ -59,15 +64,19 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private account: AccountsService,
-    private router: Router
+    private router: Router,
+    private snack: MfSnackBarService
   ) { }
 
   ngOnInit() {
   }
 
+  /**
+   * 登录
+   */
   login() {
     if (this.loginForm.invalid) {
-      alert('登录参数有误');
+      this.snack.open('登录参数有误');
       return;
     }
 
@@ -89,7 +98,34 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  /**
+   * 注册
+   */
   register() {
+    if (this.registerForm.get('account').invalid || this.registerConfirmPasswordInvalid) {
+      this.snack.open('注册账号参数有误');
+      return;
+    }
+
     this.registerText = `注册中...`;
+    this.register_Disabled = true;
+
+    const registerInfo: RegisterInfo = {
+      account: this.registerForm.get('account').value,
+      password: this.registerForm.get('password').value,
+      confirmPassword: this.registerForm.get('confirmPassword').value
+    };
+    this.account.register(registerInfo)
+      .subscribe((data) => {
+        if (data.isFault) {
+          this.snack.open('注册失败, 请重试');
+        } else {
+          this.snack.open('注册成功');
+        }
+        this.registerText = `注册`;
+        timer(2000).subscribe(() => {
+          this.register_Disabled = false;
+        });
+      });
   }
 }

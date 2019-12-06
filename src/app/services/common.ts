@@ -10,9 +10,15 @@ export interface Paginator < T = any > {
   list: T[];
 }
 
-export interface Result < T = any > {
+export class Result < T = any > {
   message: string;
   data: T;
+  /**
+   * 是否为失败请求
+   */
+  get isFault(): boolean {
+    return this.data === FAULT;
+  }
 }
 /**
  * 评论
@@ -47,10 +53,10 @@ export class BaseService {
     // return an observable with a user-facing error message
     // return throwError(
     //     'Something bad happened; please try again later.');
-    const result: Result = {
-      message: '请求失败',
-      data: FAULT
-    };
+    const result: Result = new Result();
+    result.message = '请求失败';
+    result.data = FAULT;
+
     return of(result);
   }
 }
