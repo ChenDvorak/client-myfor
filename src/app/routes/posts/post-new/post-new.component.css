@@ -15,17 +15,26 @@
   padding: 1rem;
 }
 
-.fom-new> textarea {
-    margin-top: 1rem;
+.fom-new>input {
+  font-size: 1.5rem;
+}
+
+.fom-new>textarea {
+  margin-top: 1rem;
+}
+
+.div-theme {
+    margin-top: .5rem;
 }
 
 .div-actions {
-    display: flex;
-    flex-direction: row-reverse;
+  display: flex;
+  flex-direction: row-reverse;
+  padding: .5rem 0;
 }
 
 .div-back {
-    position: fixed;
-    top: 4.5rem;
-    right: 2rem;
+  position: fixed;
+  top: 4.5rem;
+  right: 2rem;
 }

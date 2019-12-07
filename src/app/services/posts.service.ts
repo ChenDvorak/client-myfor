@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { KeyValue } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, catchError, debounceTime } from 'rxjs/operators';
@@ -30,6 +31,12 @@ export interface PostDetail {
   isLiked: boolean;
   comments: Comment[];
   hasMoreComments: boolean;
+}
+
+export interface NewPost {
+  title: string;
+  content: string;
+  files: KeyValue<string, any>[];
 }
 
 @Injectable({
@@ -91,6 +98,26 @@ export class PostsService {
       .pipe(
         debounceTime(500),
         retry(2),
+        catchError(this.base.handleError)
+      );
+  }
+
+  /**
+   * 发新帖
+   * @param info 帖子信息
+   */
+  newPost(info: NewPost): Observable<Result> {
+    const url = `clent/api/posts`;
+    const newPostForm = new FormData();
+    newPostForm.set('title', info.title);
+    newPostForm.set('content', info.content);
+    info.files.forEach(file => {
+      newPostForm.set(file.key, file.value)
+    });
+
+    return this.http.post<Result>(url, newPostForm)
+      .pipe(
+        debounceTime(500),
         catchError(this.base.handleError)
       );
   }

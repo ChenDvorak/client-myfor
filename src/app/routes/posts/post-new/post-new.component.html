@@ -1,10 +1,17 @@
 <div class="div-posts-base">
   <div class="div-post-new">
-    <form class="fom-new">
-      <input type="text" placeholder="请输入标题" />
-      <textarea [style.height]="textareaHeight" placeholder="内容, 支持 markdown 语法"></textarea>
+    <form class="fom-new" [formGroup]="newPostForm">
+      <input type="text" formControlName="title" placeholder="请输入标题" />
+      <div class="div-theme">
+        <!-- <span>所属主题 : </span>
+        <input id="txt_theme" type="text" placeholder="主题" /> -->
+        <button class="btn-primary" type="button" (click)="fle_img.click()">插入图片</button>
+        <input #fle_img type="file" hidden="hidden" (change)="insertImg()" accept=".png,.jpg,.jpeg,.gif,.bmp">
+      </div>
+      <textarea [style.height]="textareaHeight" formControlName="content" placeholder="内容, 支持 markdown 语法"></textarea>
       <div class="div-actions">
-        <button class="btn btn-raised" type="button">提交</button>
+        <button class="btn" [class.btn-raised]="!isFormInvalid" [class.btn-disabled]="isFormInvalid"
+          [disabled]="isFormInvalid" type="button" (click)="publish()">提交</button>
       </div>
     </form>
     <div class="div-back">
