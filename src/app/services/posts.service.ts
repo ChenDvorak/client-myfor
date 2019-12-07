@@ -87,6 +87,26 @@ export class PostsService {
         );
   }
 
+  // /**
+  //  * 获取自己的帖子
+  //  */
+  // getPostsFromSelf(index: number, rows: number, search: string) {
+  //   const params = new HttpParams()
+  //     .set('index', index.toString())
+  //     .set('rows', rows.toString());
+  //   if (search) {
+  //       params.set('search', search);
+  //   }
+
+  //   const url = `assets/mocks/posts.json`;
+  //   return this.http.get<Result<Paginator<PostItem>>>(url)
+  //       .pipe(
+  //         debounceTime(500),
+  //         retry(2),
+  //         catchError(this.base.handleError)
+  //       );
+  // }
+
   /**
    * 获取帖子详情
    * @param id ID
@@ -112,7 +132,7 @@ export class PostsService {
     newPostForm.set('title', info.title);
     newPostForm.set('content', info.content);
     info.files.forEach(file => {
-      newPostForm.set(file.key, file.value)
+      newPostForm.set(file.key, file.value);
     });
 
     return this.http.post<Result>(url, newPostForm)
