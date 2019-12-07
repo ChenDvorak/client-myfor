@@ -5,7 +5,7 @@ import { timer } from 'rxjs';
 
 import { AccountsService, LoginInfo, RegisterInfo } from '../../../services/accounts.service';
 import { FAULT } from '../../../services/common';
-import { MfSnackBarService } from '../../../services/mf-snack-bar.service';
+import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
 
 @Component({
   selector: 'app-login',

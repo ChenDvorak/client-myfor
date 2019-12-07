@@ -69,6 +69,13 @@ export class AccountsService {
   }
 
   /**
+   * 登出
+   */
+  logout() {
+    localStorage.removeItem(this.USER_KEY);
+  }
+
+  /**
    * 注册新用户
    * @param info 注册信息
    */

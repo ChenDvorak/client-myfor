@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AccountsService } from '../services/accounts.service';
+import { MfShadeService } from '../services/MFStyle/mf-shade.service';
 
 @Component({
   selector: 'app-root',
@@ -12,11 +13,21 @@ export class AppComponent implements OnInit {
   userName = '';
 
   constructor(
-    private account: AccountsService
+    private account: AccountsService,
+    private shade: MfShadeService
   ) {}
 
   ngOnInit() {
     this.userName = this.account.getLoggedUserName();
     this.isLogged = this.userName ? true : false;
+  }
+
+  /**
+   * 登出
+   */
+  logout() {
+    this.shade.open();
+    this.account.logout();
+    location.reload();
   }
 }

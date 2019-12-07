@@ -39,6 +39,20 @@ a:visited {
   background-color: #bae7ff;
 }
 
+.btn-raised {
+  width: 5rem;
+  background-color: #f9f9f9;
+  margin: 10px 0 0 0;
+  box-shadow: 0px 7px 5px -7px #868686;
+}
+
+.btn-raised:active {
+  background-color: #bae7ff;
+  ;
+  box-shadow: none;
+  margin: 11px 0 -1px 0;
+}
+
 .btn-primary {
   min-width: 90px;
   background-color: #bae7ff;
@@ -47,6 +61,7 @@ a:visited {
 
 .btn-primary:active {
   background-color: #fff;
+  border: 1px solid #5fc7ff;
 }
 
 .btn-disabled {
@@ -65,7 +80,7 @@ a:visited {
   color: red;
 }
 
-.div-tip {
+.mf-tip {
   position: fixed;
   top: 40%;
   left: 45%;
@@ -74,6 +89,16 @@ a:visited {
   opacity: .8;
   color: white;
   box-shadow: 0px 5px 4px -2px #666;
+  border-radius: 2px;
+}
+
+.mf-shade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.51);
 }
 
 /* 搜索框 */

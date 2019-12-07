@@ -8,9 +8,18 @@
       <span class="spn-title">段子</span>
       <button class="btn" (click)="writeNewSegment()">写新段子</button>
     </div>
-    <div *ngIf="writeSegment">
-      <form>
-        <input type="text" />
+    <div class="div-new" *ngIf="writeSegment">
+      <form class="fom-new" [formGroup]="newSegmentForm">
+        <input type="text" formControlName="nickName" placeholder="昵称"/>
+        <div class="div-new-segment-tip">
+          <!-- <span class="error" *ngIf="isNickNameInvalid">太短</span> -->
+          <span style="color: #aaa;">昵称最短两位</span>
+        </div>
+        <textarea rows="5" placeholder="内容" formControlName="content"></textarea>
+        <div class="div-new-segment-actions">
+          <button class="btn btn-raised" type="button" (click)="submitSegment()">提交</button>
+          <span class="error" *ngIf="isContentInvalid">太短</span>
+        </div>
       </form>
     </div>
   </div>

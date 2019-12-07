@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, debounceTime } from 'rxjs/operators';
 
 import { BaseService, Result, Comment, Paginator } from './common';
 
@@ -17,6 +17,14 @@ export interface SegmentItem {
   content: string;
   likes: number;
   date: string;
+}
+
+/**
+ * 新段子
+ */
+export interface NewSegment {
+  nickName: string;
+  content: string;
 }
 
 @Injectable({
@@ -48,6 +56,18 @@ export class SegmentsService {
     return this.http.get<Result<Paginator<SegmentItem>>>(url)
       .pipe(
         retry(2),
+        catchError(this.base.handleError)
+      );
+  }
+
+  /**
+   * 新段子
+   */
+  newSegment(info: NewSegment): Observable<Result> {
+    const url = `client/api/segments`;
+    return this.http.post<Result>(url, info)
+      .pipe(
+        debounceTime(500),
         catchError(this.base.handleError)
       );
   }

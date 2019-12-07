@@ -24,7 +24,7 @@
     <div nz-col [nzXs]="{span: 22, offset: 1}" [nzSm]="{span: 20, offset: 2}" [nzMd]="{span: 7, offset: 0}">
       <div class="div-list">
         <span class="title">热门帖子</span>
-        <a [routerLink]="['/posts', {state: 'hot'}]">更多</a>
+        <a [routerLink]="['/posts', {state: 'week'}]">更多</a>
         <ul>
           <li *ngFor="let post of posts">
             <a routerLink="/posts/{{post.id}}">{{post.name}}</a>
@@ -36,7 +36,7 @@
     <div nz-col [nzXs]="{span: 22, offset: 1}" [nzSm]="{span: 20, offset: 2}" [nzMd]="{span: 5, offset: 0}">
       <div class="div-list">
         <span class="title">最新段子</span>
-        <a [routerLink]="['/segments', {state: 'hot'}]">更多</a>
+        <a [routerLink]="['/segments', {state: 'week'}]">更多</a>
         <ul>
           <li *ngFor="let segment of segments">
             <a routerLink="/segments/{{segment.id}}">

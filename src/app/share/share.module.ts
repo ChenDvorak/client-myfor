@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
@@ -12,7 +12,9 @@ const COMPONENTS = [
 
 const EXPORT_MODULE = [
   NzGridModule,
-  NzPaginationModule
+  NzPaginationModule,
+  ReactiveFormsModule,
+  FormsModule
 ];
 
 @NgModule({

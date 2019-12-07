@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService, PostItem } from '../../../services/posts.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MfSnackBarService } from '../../../services/mf-snack-bar.service';
+import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
 
 @Component({
   selector: 'app-posts-list',

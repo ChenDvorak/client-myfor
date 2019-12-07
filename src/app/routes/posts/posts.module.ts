@@ -7,6 +7,7 @@ import { ShareModule } from '../../share/share.module';
 import { PostsRoutingModule } from './posts-routing.module';
 import { PostsListComponent } from './posts-list/posts-list.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { PostNewComponent } from './post-new/post-new.component';
 
 
 @NgModule({
@@ -14,7 +15,9 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 
   PostsListComponent,
 
-  PostDetailComponent],
+  PostDetailComponent,
+
+  PostNewComponent],
   imports: [
     CommonModule,
     PostsRoutingModule,

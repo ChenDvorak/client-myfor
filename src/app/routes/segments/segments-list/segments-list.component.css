@@ -1,7 +1,6 @@
 .div-segments-base {
   margin-top: 1rem;
   padding: 1rem;
-
 }
 
 .div-row-title {
@@ -74,5 +73,33 @@
 }
 
 .div-date>.spn-date {
+  flex-grow: 1;
+}
+
+.div-new {
+  margin-left: 10%;
+  padding: 1rem;
+}
+
+.fom-new {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  background-color: white;
+  padding: .5rem 1rem;
+}
+
+.div-new-segment-actions {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.div-new-segment-tip {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: .2rem;
+}
+
+.error {
   flex-grow: 1;
 }

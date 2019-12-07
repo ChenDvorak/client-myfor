@@ -35,7 +35,7 @@ box-shadow: 0px 5px 4px -2px #666;
     const body = document.getElementsByTagName('body')[0];
     const tip = document.createElement('div');
     tip.setAttribute('id', tipID);
-    tip.setAttribute('class', 'div-tip');
+    tip.setAttribute('class', 'mf-tip');
     tip.innerHTML = msg;
 
     body.appendChild(tip);
