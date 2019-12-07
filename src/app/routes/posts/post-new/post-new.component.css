@@ -2,3 +2,30 @@
   margin-top: 1rem;
   padding: 1rem;
 }
+
+.div-post-new {
+  max-width: 50rem;
+  margin: auto;
+}
+
+.fom-new {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 1rem;
+}
+
+.fom-new> textarea {
+    margin-top: 1rem;
+}
+
+.div-actions {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.div-back {
+    position: fixed;
+    top: 4.5rem;
+    right: 2rem;
+}

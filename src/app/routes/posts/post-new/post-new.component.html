@@ -1,3 +1,14 @@
 <div class="div-posts-base">
-    <app-back></app-back>
+  <div class="div-post-new">
+    <form class="fom-new">
+      <input type="text" placeholder="请输入标题" />
+      <textarea [style.height]="textareaHeight" placeholder="内容, 支持 markdown 语法"></textarea>
+      <div class="div-actions">
+        <button class="btn btn-raised" type="button">提交</button>
+      </div>
+    </form>
+    <div class="div-back">
+      <app-back></app-back>
+    </div>
+  </div>
 </div>
