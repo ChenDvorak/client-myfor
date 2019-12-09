@@ -25,6 +25,10 @@ nav>.div-user {
   width: 100%;
 }
 
+.a-new-post {
+  margin-left: 3rem;
+}
+
 .a-username {
   margin: 0 1rem;
 }

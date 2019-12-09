@@ -1,0 +1,29 @@
+.div-theme-base {
+    width: 35rem;
+    margin: auto;
+    margin-top: 7rem;
+}
+
+.fom-new-theme {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 2rem 3rem;
+    padding: 1rem 2rem;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.txt-name {
+    font-size: 1.3rem;
+    padding: 0 .5rem;
+}
+
+.txt-description {
+    padding: .5rem;
+}
+
+.div-actions {
+    display: flex;
+    flex-direction: row-reverse;
+}

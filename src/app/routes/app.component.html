@@ -7,7 +7,8 @@
     <div class="div-user" [ngSwitch]="isLogged">
       <a *ngSwitchCase="false" [routerLink]="['/login']">登录</a>
       <div *ngSwitchCase="true">
-        <a routerLink="/posts/new">发新帖</a>
+        <a routerLink="/themes/new">创建新主题</a>
+        <a class="a-new-post" routerLink="/posts/new">发新帖</a>
         <a class="a-username" href="javascript:;" title="这是你">{{userName}}</a>
         <a href="javascript:;" (click)="logout()">登出</a>
       </div>

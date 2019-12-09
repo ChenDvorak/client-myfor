@@ -37,6 +37,14 @@ export interface ThemeDetail {
   createDate: string;
 }
 
+/**
+ * 新主题
+ */
+export interface NewThemeInfo {
+  name: string;
+  description: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -90,8 +98,8 @@ export class ThemesService {
     return this.http.get<Result<ThemeDetail>>(url)
       .pipe(
         debounceTime(500),
-          retry(2),
-          catchError(this.base.handleError)
+        retry(2),
+        catchError(this.base.handleError)
       );
   }
 
@@ -109,6 +117,18 @@ export class ThemesService {
         map(s => s.data),
         debounceTime(500),
         distinctUntilChanged()
+      );
+  }
+
+  /**
+   * 创建一个新主题, 需要登录
+   */
+  createTheme(info: NewThemeInfo): Observable<Result> {
+    const url = `client/api/themes`;
+    return this.http.post<Result>(url, info)
+      .pipe(
+        debounceTime(500),
+        catchError(this.base.handleError)
       );
   }
 }

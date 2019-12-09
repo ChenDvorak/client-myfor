@@ -1,6 +1,8 @@
 /**
  * 用户信息和账号的服务
+ * 不要注入其他的业务服务, 因为当前服务可能被注入
  */
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseService, Result } from './common';

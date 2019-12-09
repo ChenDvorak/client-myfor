@@ -1,0 +1,14 @@
+<div class="div-theme-base">
+  <form class="fom-new-theme" [formGroup]="themeForm">
+    <h3>主题名</h3>
+    <input class="txt-name" id="txt_name" type="text" formControlName="name" placeholder="主题名" />
+    <span class="error" *ngIf="isNameInvalid">写上主题名字</span>
+    <br/>
+    <h3>描述</h3>
+    <textarea class="txt-description" id="txt_description" rows="5" formControlName="description" placeholder="简单说下这是什么主题"></textarea>
+    <div class="div-actions">
+      <button class="btn btn-raised" type="button" (click)="createTheme()">创建</button>
+      <span class="error" *ngIf="isDescriptionInvalid" style="flex-grow: 1;">写上描述</span>
+    </div>
+  </form>
+</div>
