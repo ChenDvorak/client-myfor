@@ -45,6 +45,7 @@ export interface PostDetail {
 
 export interface NewPost {
   title: string;
+  theme: string;
   content: string;
   files: KeyValue<string, any>[];
 }

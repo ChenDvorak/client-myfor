@@ -33,6 +33,7 @@ export class PostNewComponent implements OnInit {
 
   newPostForm = this.fb.group({
     title: ['', [Validators.required]],
+    theme: [''],
     content: ['', [Validators.required]]
   });
 
@@ -70,6 +71,7 @@ export class PostNewComponent implements OnInit {
     this.submitDisabled = true;
     const info: NewPost = {
       title: this.newPostForm.get('title').value,
+      theme: this.newPostForm.get('theme').value,
       content: this.newPostForm.get('content').value,
       files: this.contentFiles
     };

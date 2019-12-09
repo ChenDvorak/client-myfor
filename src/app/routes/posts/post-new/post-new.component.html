@@ -3,8 +3,8 @@
     <form class="fom-new" [formGroup]="newPostForm">
       <input type="text" formControlName="title" placeholder="请输入标题" />
       <div class="div-theme">
-        <!-- <span>所属主题 : </span>
-        <input id="txt_theme" type="text" placeholder="主题" /> -->
+        <span>所属主题 : </span>
+        <input type="text" formControlName="theme" placeholder="简单分个类" />
         <button class="btn-primary" type="button" (click)="fle_img.click()">插入图片</button>
         <input #fle_img type="file" hidden="hidden" (change)="insertImg()" accept=".png,.jpg,.jpeg,.gif,.bmp">
       </div>
