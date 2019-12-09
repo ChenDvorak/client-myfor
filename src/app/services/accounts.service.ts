@@ -50,7 +50,14 @@ export class AccountsService {
     if (userName) {
       return userName;
     }
-    return '';
+    return undefined;
+  }
+
+  /**
+   * 当前是否有用户登录
+   */
+  isLogged(): boolean {
+    return this.getLoggedUserName() ? true : false;
   }
 
   /**

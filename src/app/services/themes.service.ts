@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { retry, catchError, debounceTime } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { retry, catchError, debounceTime, map, distinctUntilChanged } from 'rxjs/operators';
 
 import { BaseService, Result, Paginator } from './common';
 
@@ -92,6 +92,23 @@ export class ThemesService {
         debounceTime(500),
           retry(2),
           catchError(this.base.handleError)
+      );
+  }
+
+  /**
+   * 获取主题的提示建议
+   * @param segment 字段
+   */
+  getThemeNameTypeAhead(segment: string): Observable<string> {
+    if (segment.trim() === '') {
+      return of();
+    }
+    const url = `assets/mocks/theme-type-ahead.json`;
+    return this.http.get<Result<string>>(url)
+      .pipe(
+        map(s => s.data),
+        debounceTime(500),
+        distinctUntilChanged()
       );
   }
 }

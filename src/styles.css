@@ -29,6 +29,14 @@ img {
   max-width: 100%;
 }
 
+.font-gray {
+  color: gray !important;
+}
+
+.font-red {
+  color: red !important;
+}
+
 .w100 {
   width: 100% !important;
 }

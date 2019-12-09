@@ -2,9 +2,11 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { KeyValue } from '@angular/common';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { timer } from 'rxjs';
+import { timer, Observable, Subject, of } from 'rxjs';
 import { PostsService, NewPost } from '../../../services/posts.service';
+import { ThemesService } from '../../../services/themes.service';
 import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-post-new',
@@ -18,6 +20,11 @@ export class PostNewComponent implements OnInit {
    */
   textareaHeight = '200px';
   submitDisabled = false;
+  /**
+   * 提示的主题名
+   */
+  themeName$: Observable<string>;
+  private searchText$ = new Subject<string>();
 
   /**
    * 提交的内容里要上传的图片
@@ -48,12 +55,41 @@ export class PostNewComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private snack: MfSnackBarService,
+    private theme: ThemesService,
     private post: PostsService,
     private router: Router
   ) { }
 
   ngOnInit() {
     this.textareaHeight = window.innerHeight * 0.75 + `px`;
+
+    this.resetThemeNameEvent();
+  }
+  /**
+   * 重置主题的输入建议
+   */
+  private resetThemeNameEvent() {
+    this.themeName$ = of();
+    this.themeName$ = this.searchText$.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap(segment => this.theme.getThemeNameTypeAhead(segment))
+    );
+  }
+
+  /**
+   * 主题输入建议
+   */
+  themeTypeAhead(value: string) {
+    if (value.trim() === '') {
+      this.resetThemeNameEvent();
+    }
+    this.searchText$.next(value);
+  }
+
+  selectType(value: string) {
+    this.newPostForm.get('theme').setValue(value);
+    this.resetThemeNameEvent();
   }
 
   /**

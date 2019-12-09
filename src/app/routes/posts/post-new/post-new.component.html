@@ -4,8 +4,20 @@
       <input type="text" formControlName="title" placeholder="请输入标题" />
       <div class="div-theme">
         <span>所属主题 : </span>
-        <input type="text" formControlName="theme" placeholder="简单分个类" />
-        <button class="btn-primary" type="button" (click)="fle_img.click()">插入图片</button>
+
+        <p>
+          <button class="btn-primary" type="button" (click)="fle_img.click()">插入图片</button>
+        </p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div>
+          <input type="text" #txt_theme formControlName="theme" placeholder="简单分个主题"
+            (keyup)="themeTypeAhead(txt_theme.value)" />
+          <ul class="ul-typeahead">
+            <li (click)="selectType(theme)" *ngFor="let theme of themeName$ | async">{{theme}}</li>
+          </ul>
+          <span class="font-gray"> 不填或者主题不存在, 会自动分入<span class="font-red">无主题</span></span>
+        </div>
+
         <input #fle_img type="file" hidden="hidden" (change)="insertImg()" accept=".png,.jpg,.jpeg,.gif,.bmp">
       </div>
       <textarea [style.height]="textareaHeight" formControlName="content" placeholder="内容, 支持 markdown 语法"></textarea>

@@ -18,8 +18,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userName = this.account.getLoggedUserName();
-    this.isLogged = this.userName ? true : false;
+    this.isLogged = this.account.isLogged();
   }
 
   /**
