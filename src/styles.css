@@ -25,6 +25,10 @@ a:visited {
   color: #551A8B !important;
 }
 
+img {
+  max-width: 100%;
+}
+
 .w100 {
   width: 100% !important;
 }

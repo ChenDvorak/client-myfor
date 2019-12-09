@@ -77,7 +77,7 @@ export class PostNewComponent implements OnInit {
     this.post.newPost(info)
       .subscribe((data) => {
         if (data.isFault) {
-          this.snack.open('发布失败, 请重试');
+          this.snack.open(this.post.getFaultMessageOfRandom());
           timer(2000).subscribe(() => {
             this.submitDisabled = false;
           });
@@ -91,6 +91,9 @@ export class PostNewComponent implements OnInit {
       });
   }
 
+  /**
+   * 插入图片
+   */
   insertImg() {
     const eleFiles = this.file.nativeElement.files;
     if (!eleFiles.length) {
@@ -108,7 +111,9 @@ export class PostNewComponent implements OnInit {
     this.contentFiles.push(file);
 
     this.newPostForm.get('content').setValue(
-      `${this.newPostForm.get('content').value}\r\n![${name}](${link} '${name}')`
+      `${this.newPostForm.get('content').value}
+      <a href='${link}' target='_blank'>[查看原图]<a>
+      ![图片](${link} '${name}')`
     );
   }
 }

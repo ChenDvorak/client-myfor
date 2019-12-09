@@ -6,6 +6,16 @@ import { retry, catchError, debounceTime } from 'rxjs/operators';
 
 import { Result, BaseService, Paginator, Comment } from './common';
 
+/**
+ * 发布失败的信息
+ */
+export const PUBLISH_FAULT_MESSAGE = [
+  '发布失败乃兵家常事, 请大侠重新来过',
+  '发布失败, 再试试',
+  '居然发布失败了, 你手屎里开过光吧',
+  '我只是个机器人, 怎么告诉你发布失败了'
+];
+
 export interface HomePagePostItem {
   id: number;
   name: string;
@@ -48,6 +58,15 @@ export class PostsService {
     private base: BaseService,
     private http: HttpClient
   ) { }
+
+  /**
+   * 随便获取一个失败信息
+   */
+  getFaultMessageOfRandom() {
+    const rand = Math.floor(Math.random() * PUBLISH_FAULT_MESSAGE.length );
+    const msg = PUBLISH_FAULT_MESSAGE[rand];
+    return msg;
+  }
 
   /**
    * 获取主页帖子列表

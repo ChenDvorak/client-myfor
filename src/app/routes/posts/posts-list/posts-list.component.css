@@ -85,4 +85,5 @@
 
 .div-col-detail {
   border: 2px solid #aaa;
+  overflow-y: auto;
 }
