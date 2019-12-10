@@ -148,10 +148,11 @@ export class PostNewComponent implements OnInit {
 
     this.contentFiles.push(file);
 
+    //  使用的双引号, 要注意, 后台要解析, 所以要一致
     this.newPostForm.get('content').setValue(
       `${this.newPostForm.get('content').value}
-      <a href='${link}' target='_blank'>[查看原图]<a>
-      ![图片](${link} '${name}')`
+      <a href="${link}" target="_blank">[查看原图]<a>
+      ![图片](${link} "${name}")`
     );
   }
 }
