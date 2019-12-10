@@ -38,7 +38,8 @@ export class SegmentsService {
   ) { }
 
   getHomePageSegments(): Observable<Result<HomePageSegmentItem[]>> {
-    const url = `assets/mocks/home-page-segments.json`;
+    // const url = `assets/mocks/home-page-segments.json`;
+    const url = `client/api/segments/home`;
     return this.http.get<Result<HomePageSegmentItem[]>>(url)
       .pipe(
         retry(2),

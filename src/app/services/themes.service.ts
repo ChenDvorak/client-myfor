@@ -59,7 +59,8 @@ export class ThemesService {
    * 获取首页的主题列表
    */
   getHomePageThemes(): Observable<Result<HomePageThemeItem[]>> {
-    const url = `assets/mocks/home-page-themes.json`;
+    // const url = `assets/mocks/home-page-themes.json`;
+    const url = `client/api/themes/home`;
     return this.http.get<Result<HomePageThemeItem[]>>(url)
       .pipe(
         retry(2),

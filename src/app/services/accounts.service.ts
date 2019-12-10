@@ -68,8 +68,8 @@ export class AccountsService {
    * @param info 登录信息
    */
   login(info: LoginInfo): Observable<Result<string>> {
-    const url = `assets/mocks/login.json`;
-    // const url = `client/api/login`;
+    // const url = `assets/mocks/login.json`;
+    const url = `client/api/login`;
     return this.http.patch<Result<string>>(url, info)
       .pipe(
         debounceTime(500),

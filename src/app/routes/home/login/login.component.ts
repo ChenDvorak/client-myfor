@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 import { timer } from 'rxjs';
 
 import { AccountsService, LoginInfo, RegisterInfo } from '../../../services/accounts.service';
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private account: AccountsService,
-    private router: Router,
+    // private router: Router,
     private snack: MfSnackBarService
   ) { }
 
@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit {
         } else {
           //  将登录后的用户名存在 KEY 为 {USER_KEY} 的 localStorage 中
           localStorage.setItem(this.account.USER_KEY, data.data);
-          this.router.navigateByUrl('/');
+          location.href = '/';
         }
       });
   }

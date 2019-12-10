@@ -45,9 +45,9 @@ export class BaseService {
 
   /**
    * 经过拦截器, 进入到这里的 error 只会是状态码
-   * @param error 异常
+   * @param error 异常状态码
    */
-  handleError(error: number) {
+  handleError(error: HttpErrorResponse) {
     // if (error.error instanceof ErrorEvent) {
     //   // A client-side or network error occurred. Handle it accordingly.
     //   console.error('An error occurred:', error.error.message);
@@ -58,17 +58,23 @@ export class BaseService {
     //     `Backend returned code ${error.status}, ` +
     //     `body was: ${error.error}`);
     // }
-    console.error(`backend returned code ${error}`);
+    console.error(`backend returned code ${error.status}`);
     // return an observable with a user-facing error message
     // return throwError(
     //     'Something bad happened; please try again later.');
+
     const result: Result = new Result();
-    result.message = '请求失败';
+    result.message = '';
     result.data = FAULT;
 
-    if (error === 401) {
-      result.message = '请重新登录';
+    switch (error.status) {
+      case 401: { result.message = '请重新登录'; } break;
+      default: { result.message = '请求失败, 稍后重试'; } break;
     }
+
+    // const result: Result = new Result();
+    // result.message = '请求失败';
+    // result.data = FAULT;
 
     return of(result);
   }

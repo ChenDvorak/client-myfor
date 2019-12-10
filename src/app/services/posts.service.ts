@@ -73,7 +73,8 @@ export class PostsService {
    * 获取主页帖子列表
    */
   getHomePagePosts(): Observable<Result<HomePagePostItem[]>> {
-    const url = `assets/mocks/home-page-posts.json`;
+    // const url = `assets/mocks/home-page-posts.json`;
+    const url = `client/api/posts/home`;
     return this.http.get<Result<HomePagePostItem[]>>(url)
       .pipe(
         retry(2),
