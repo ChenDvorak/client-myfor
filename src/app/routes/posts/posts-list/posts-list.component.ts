@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService, PostItem } from '../../../services/posts.service';
+import { Result } from '../../../services/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
 
@@ -41,7 +42,7 @@ export class PostsListComponent implements OnInit {
   private getPosts(index: number, search: string, theme: string) {
     this.post.getPosts(index, 20, search, theme)
       .subscribe((data) => {
-        if (data.isFault) {
+        if (Result.isFault(data)) {
           this.snack.open('获取失败, 请重试');
         } else {
           this.totalRows = data.data.totalRows;

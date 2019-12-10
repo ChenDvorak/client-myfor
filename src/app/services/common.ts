@@ -17,8 +17,8 @@ export class Result < T = any > {
   /**
    * 是否为失败请求
    */
-  get isFault(): boolean {
-    return this.data === FAULT;
+  static isFault(data: Result): boolean {
+    return data.data === FAULT;
   }
 }
 /**
@@ -34,7 +34,7 @@ export interface Comment {
 /**
  * 请求失败, 可以和 Result 的 data 对比
  */
-export const FAULT = undefined;
+export const FAULT: undefined = undefined;
 
 @Injectable({
   providedIn: 'root'
@@ -43,10 +43,6 @@ export class BaseService {
 
   constructor(private snack: MfSnackBarService) { }
 
-  /**
-   * 经过拦截器, 进入到这里的 error 只会是状态码
-   * @param error 异常状态码
-   */
   handleError(error: HttpErrorResponse) {
     // if (error.error instanceof ErrorEvent) {
     //   // A client-side or network error occurred. Handle it accordingly.

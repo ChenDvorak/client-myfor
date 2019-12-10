@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SegmentsService, SegmentItem, NewSegment } from '../../../services/segments.service';
+import { Result } from '../../../services/common';
 import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { timer } from 'rxjs';
@@ -55,7 +56,7 @@ export class SegmentsListComponent implements OnInit {
   private getSegments(index: number) {
     this.segment.getSegments(index, 20)
       .subscribe((data) => {
-        if (data.isFault) {
+        if (Result.isFault(data)) {
           this.snack.open('获取失败, 请重试');
         } else {
           this.totalRows = data.data.totalRows;
@@ -104,7 +105,7 @@ export class SegmentsListComponent implements OnInit {
     };
     this.segment.newSegment(info)
       .subscribe((data) => {
-        if (data.isFault) {
+        if (Result.isFault(data)) {
           this.snack.open('提交失败, 请重试');
         } else {
           this.snack.open('提交成功');

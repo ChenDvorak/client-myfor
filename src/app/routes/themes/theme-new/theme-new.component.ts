@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
 import { ThemesService, NewThemeInfo } from '../../../services/themes.service';
 import { AccountsService } from '../../../services/accounts.service';
+import { FAULT, Result } from 'src/app/services/common';
 
 @Component({
   selector: 'app-theme-new',
@@ -66,7 +67,7 @@ export class ThemeNewComponent implements OnInit {
 
     this.theme.createTheme(info)
       .subscribe((data) => {
-        if (data.isFault) {
+        if (Result.isFault(data)) {
           this.snack.open('创建失败, 再试下');
         } else {
           this.router.navigate(['themes']);

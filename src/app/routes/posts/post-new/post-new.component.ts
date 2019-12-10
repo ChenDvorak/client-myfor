@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { timer, Observable, Subject, of } from 'rxjs';
 import { PostsService, NewPost } from '../../../services/posts.service';
 import { ThemesService } from '../../../services/themes.service';
+import { Result } from '../../../services/common';
 import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
@@ -114,7 +115,7 @@ export class PostNewComponent implements OnInit {
 
     this.post.newPost(info)
       .subscribe((data) => {
-        if (data.isFault) {
+        if (Result.isFault(data)) {
           this.snack.open(this.post.getFaultMessageOfRandom());
           timer(2000).subscribe(() => {
             this.submitDisabled = false;

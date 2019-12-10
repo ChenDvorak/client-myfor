@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { timer } from 'rxjs';
 
 import { AccountsService, LoginInfo, RegisterInfo } from '../../../services/accounts.service';
-import { FAULT } from '../../../services/common';
+import { FAULT, Result } from '../../../services/common';
 import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
 
 @Component({
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
     this.account.login(info)
       .subscribe((data) => {
         if (data.data === FAULT) {
-          alert('登录失败');
+          this.snack.open('登录失败', 3000);
           this.loginText = '登录';
         } else {
           //  将登录后的用户名存在 KEY 为 {USER_KEY} 的 localStorage 中
@@ -117,7 +117,7 @@ export class LoginComponent implements OnInit {
     };
     this.account.register(registerInfo)
       .subscribe((data) => {
-        if (data.isFault) {
+        if (Result.isFault(data)) {
           this.snack.open('注册失败, 请重试');
         } else {
           this.snack.open('注册成功');

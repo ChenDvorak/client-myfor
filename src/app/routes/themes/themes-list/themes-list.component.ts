@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ThemesService, ThemeItem } from '../../../services/themes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
+import { Result } from 'src/app/services/common';
 
 @Component({
   selector: 'app-themes-list',
@@ -38,7 +39,7 @@ export class ThemesListComponent implements OnInit {
   private getThemes(index: number, search: string) {
     this.theme.getThemes(index, 20, search)
       .subscribe((data) => {
-        if (data.isFault) {
+        if (Result.isFault(data)) {
           this.snack.open('获取失败, 请重试');
         } else {
           this.totalRows = data.data.totalRows;
