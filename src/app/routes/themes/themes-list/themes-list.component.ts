@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ThemesService, ThemeItem } from '../../../services/themes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
-import { Result } from 'src/app/services/common';
 
 @Component({
   selector: 'app-themes-list',
@@ -31,13 +30,14 @@ export class ThemesListComponent implements OnInit {
       index = +indexParam;
     }
     const search = this.route.snapshot.paramMap.get('search');
-    this.getThemes(index, search);
+    const state = this.route.snapshot.paramMap.get('state');
+    this.getThemes(index, search, state);
 
     this.listHeight = window.innerHeight * 0.75 + 'px';
   }
 
-  private getThemes(index: number, search: string) {
-    this.theme.getThemes(index, 20, search)
+  private getThemes(index: number, search: string, state: string) {
+    this.theme.getThemes(index, 20, search, state)
       .subscribe((data) => {
         if (data.isFault) {
           this.snack.open('获取失败, 请重试');
@@ -55,12 +55,12 @@ export class ThemesListComponent implements OnInit {
   searchThemes(search: string) {
     if (!search || search.trim() === '') {
       this.router.navigateByUrl('/themes');
-      this.getThemes(1, '');
+      this.getThemes(1, '', '');
       return;
     }
 
     this.router.navigate(['/themes', {search}]);
-    this.getThemes(1, search);
+    this.getThemes(1, search, '');
   }
 
   /**

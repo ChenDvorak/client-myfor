@@ -71,17 +71,20 @@ export class ThemesService {
   /**
    * 获取主题列表
    */
-  getThemes(index: number, rows: number, search: string): Observable<Result<Paginator<ThemeItem>>> {
+  getThemes(index: number, rows: number, search: string, state: string): Observable<Result<Paginator<ThemeItem>>> {
     const params = new HttpParams()
       .set('index', index.toString())
       .set('rows', rows.toString());
 
     if (search) {
         params.set('search', search);
-      }
+    }
+    if (state) {
+      params.set('state', state);
+    }
 
-    const url = `assets/mocks/themes.json`;
-      // const url = `client/api/themes?${params.toString()}`;
+    // const url = `assets/mocks/themes.json`;
+    const url = `client/api/themes?${params.toString()}`;
     return this.http.get<Result<Paginator<ThemeItem>>>(url)
         .pipe(
           debounceTime(500),
@@ -112,7 +115,8 @@ export class ThemesService {
     if (segment.trim() === '') {
       return of();
     }
-    const url = `assets/mocks/theme-type-ahead.json`;
+    // const url = `assets/mocks/theme-type-ahead.json`;
+    const url = `client/api/themes/typeahead?segment=${segment}`;
     return this.http.get<Result<string>>(url)
       .pipe(
         map(s => s.data),
