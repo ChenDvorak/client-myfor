@@ -115,7 +115,7 @@ export class PostNewComponent implements OnInit {
 
     this.post.newPost(info)
       .subscribe((data) => {
-        if (Result.isFault(data)) {
+        if (data.isFault) {
           this.snack.open(this.post.getFaultMessageOfRandom());
           timer(2000).subscribe(() => {
             this.submitDisabled = false;

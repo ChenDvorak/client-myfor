@@ -11,15 +11,13 @@ export interface Paginator < T = any > {
   list: T[];
 }
 
-export class Result < T = any > {
+export interface Result < T = any > {
   message: string;
   data: T;
   /**
-   * 是否为失败请求
+   * 是否为失败请求, 在拦截器中设置
    */
-  static isFault(data: Result): boolean {
-    return data.data === FAULT;
-  }
+  isFault: boolean;
 }
 /**
  * 评论
@@ -59,14 +57,11 @@ export class BaseService {
     // return throwError(
     //     'Something bad happened; please try again later.');
 
-    const result: Result = new Result();
-    result.message = '';
-    result.data = FAULT;
-
-    switch (error.status) {
-      case 401: { result.message = '请重新登录'; } break;
-      default: { result.message = '请求失败, 稍后重试'; } break;
-    }
+    const result: Result = {
+      message: '请求失败, 稍后重试',
+      data: FAULT,
+      isFault: true
+    };
 
     // const result: Result = new Result();
     // result.message = '请求失败';

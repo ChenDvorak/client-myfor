@@ -39,7 +39,7 @@ export class ThemesListComponent implements OnInit {
   private getThemes(index: number, search: string) {
     this.theme.getThemes(index, 20, search)
       .subscribe((data) => {
-        if (Result.isFault(data)) {
+        if (data.isFault) {
           this.snack.open('获取失败, 请重试');
         } else {
           this.totalRows = data.data.totalRows;

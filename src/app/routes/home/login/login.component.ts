@@ -117,7 +117,7 @@ export class LoginComponent implements OnInit {
     };
     this.account.register(registerInfo)
       .subscribe((data) => {
-        if (Result.isFault(data)) {
+        if (data.isFault) {
           this.snack.open('注册失败, 请重试');
         } else {
           this.snack.open('注册成功');

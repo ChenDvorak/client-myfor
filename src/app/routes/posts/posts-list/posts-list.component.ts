@@ -42,7 +42,7 @@ export class PostsListComponent implements OnInit {
   private getPosts(index: number, search: string, theme: string) {
     this.post.getPosts(index, 20, search, theme)
       .subscribe((data) => {
-        if (Result.isFault(data)) {
+        if (data.isFault) {
           this.snack.open('获取失败, 请重试');
         } else {
           this.totalRows = data.data.totalRows;

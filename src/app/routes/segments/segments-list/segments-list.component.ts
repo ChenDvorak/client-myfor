@@ -56,7 +56,7 @@ export class SegmentsListComponent implements OnInit {
   private getSegments(index: number) {
     this.segment.getSegments(index, 20)
       .subscribe((data) => {
-        if (Result.isFault(data)) {
+        if (data.isFault) {
           this.snack.open('获取失败, 请重试');
         } else {
           this.totalRows = data.data.totalRows;
@@ -105,7 +105,7 @@ export class SegmentsListComponent implements OnInit {
     };
     this.segment.newSegment(info)
       .subscribe((data) => {
-        if (Result.isFault(data)) {
+        if (data.isFault) {
           this.snack.open('提交失败, 请重试');
         } else {
           this.snack.open('提交成功');

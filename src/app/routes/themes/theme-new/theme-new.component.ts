@@ -67,7 +67,7 @@ export class ThemeNewComponent implements OnInit {
 
     this.theme.createTheme(info)
       .subscribe((data) => {
-        if (Result.isFault(data)) {
+        if (data.isFault) {
           this.snack.open('创建失败, 再试下');
         } else {
           this.router.navigate(['themes']);
