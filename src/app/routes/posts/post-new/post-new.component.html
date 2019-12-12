@@ -3,13 +3,12 @@
     <form class="fom-new" [formGroup]="newPostForm">
       <input type="text" formControlName="title" placeholder="请输入标题" />
       <div class="div-theme">
-        <span>所属主题 : </span>
-
         <p>
           <button class="btn-primary" type="button" (click)="fle_img.click()">插入图片</button>
         </p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div>
+          <span>所属主题 : </span>
           <input type="text" #txt_theme formControlName="theme" placeholder="简单分个主题"
             (keyup)="themeTypeAhead(txt_theme.value)" />
           <ul class="ul-typeahead">

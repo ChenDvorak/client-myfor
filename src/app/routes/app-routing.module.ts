@@ -5,7 +5,7 @@ import { IndexComponent } from './home/index/index.component';
 import { LoginComponent } from './home/login/login.component';
 
 const appRoutes: Routes = [
-    { path: 'home', component: IndexComponent },
+    { path: 'home', redirectTo: '' },
     { path: 'login', component: LoginComponent },
     {
       path: 'posts',

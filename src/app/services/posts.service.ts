@@ -148,10 +148,12 @@ export class PostsService {
    * @param info 帖子信息
    */
   newPost(info: NewPost): Observable<Result> {
-    const url = `clent/api/posts`;
+    const url = `client/api/posts`;
+    console.log(url);
     const newPostForm = new FormData();
     newPostForm.set('title', info.title);
     newPostForm.set('content', info.content);
+    newPostForm.set('theme', info.theme);
     info.files.forEach(file => {
       newPostForm.set(file.key, file.value);
     });
