@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
     this.account.login(info)
       .subscribe((data) => {
         if (data.data === FAULT) {
-          this.snack.open('登录失败', 3000);
+          this.snack.open(data.message, 3000);
           this.loginText = '登录';
         } else {
           //  将登录后的用户名存在 KEY 为 {USER_KEY} 的 localStorage 中

@@ -25,7 +25,7 @@ export interface HomePagePostItem {
 
 export interface PostItem {
   id: number;
-  name: string;
+  title: string;
   creator: string;
   createDate: string;
   likes: number;
@@ -98,8 +98,8 @@ export class PostsService {
       params.set('theme', theme);
     }
 
-    const url = `assets/mocks/posts.json`;
-      // const url = `client/api/posts?${params.toString()}`;
+    // const url = `assets/mocks/posts.json`;
+    const url = `client/api/posts?${params.toString()}`;
     return this.http.get<Result<Paginator<PostItem>>>(url)
         .pipe(
           debounceTime(500),
@@ -133,8 +133,8 @@ export class PostsService {
    * @param id ID
    */
   getPostDetail(id: number): Observable<Result<PostDetail>> {
-    const url = `assets/mocks/post.json`;
-    // const url = `client/api/posts/${1}`;
+    // const url = `assets/mocks/post.json`;
+    const url = `client/api/posts/${id}`;
     return this.http.get<Result<PostDetail>>(url)
       .pipe(
         debounceTime(500),

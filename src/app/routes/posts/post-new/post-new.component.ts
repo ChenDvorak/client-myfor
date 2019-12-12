@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { timer, Observable, Subject, of } from 'rxjs';
 import { PostsService, NewPost } from '../../../services/posts.service';
 import { ThemesService } from '../../../services/themes.service';
-import { Result } from '../../../services/common';
 import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
@@ -152,8 +151,8 @@ export class PostNewComponent implements OnInit {
     //  使用的双引号, 要注意, 后台要解析, 所以要一致
     this.newPostForm.get('content').setValue(
       `${this.newPostForm.get('content').value}
-      <a href="${link}" target="_blank">[查看原图]<a>
-      ![图片](${link} "${name}")`
+      <p><a href="${link}" target="_blank">[查看原图]<a></p>
+      <p>![图片](${link} "${name}")</p>`
     );
   }
 }

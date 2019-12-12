@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-import { MfSnackBarService } from '../services/MFStyle/mf-snack-bar.service';
 
 export interface Paginator < T = any > {
   index: number;
@@ -26,7 +25,7 @@ export interface Comment {
   id: number;
   nickName: string;
   date: string;
-  comment: string;
+  commentContent: string;
 }
 
 /**
@@ -39,7 +38,7 @@ export const FAULT: undefined = undefined;
 })
 export class BaseService {
 
-  constructor(private snack: MfSnackBarService) { }
+  constructor() { }
 
   handleError(error: HttpErrorResponse) {
     // if (error.error instanceof ErrorEvent) {

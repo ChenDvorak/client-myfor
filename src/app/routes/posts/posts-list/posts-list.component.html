@@ -24,7 +24,7 @@
         <ul>
           <li class="li-posts-item" *ngFor="let post of posts">
             <div>
-              <a class="a-post-title" (click)="showDetail(post.id)">{{post.name}}</a>
+              <a class="a-post-title" (click)="showDetail(post.id)">{{post.title}}</a>
               <span class="spn-date">{{post.createDate}}</span>
               <span class="spn-master">贴主: {{post.creator}}</span>
             </div>

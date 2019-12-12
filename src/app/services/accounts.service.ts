@@ -9,6 +9,8 @@ import { BaseService, Result } from './common';
 import { debounceTime, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
+import sha256 from 'crypto-js/sha256';
+
 /**
  * 用户登录信息
  */
@@ -68,6 +70,7 @@ export class AccountsService {
    * @param info 登录信息
    */
   login(info: LoginInfo): Observable<Result<string>> {
+    info.password = sha256(info.password).toString();
     // const url = `assets/mocks/login.json`;
     const url = `client/api/login`;
     return this.http.patch<Result<string>>(url, info)
@@ -89,6 +92,9 @@ export class AccountsService {
    * @param info 注册信息
    */
   register(info: RegisterInfo) {
+    info.password = sha256(info.password).toString();
+    info.confirmPassword = sha256(info.confirmPassword).toString();
+
     const url = `client/api/register`;
     return this.http.post<Result>(url, info)
       .pipe(

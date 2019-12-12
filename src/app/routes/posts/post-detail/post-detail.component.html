@@ -11,8 +11,8 @@
       <span style="margin-left: 2rem;">发帖时间 : {{detail.createDate}}</span>
     </div>
     <div class="div-content">
-      <markdown>
-        {{detail.content}}
+      <markdown lineNumbers [data]="detail.content">
+        <!-- {{detail.content}} -->
       </markdown>
     </div>
     <button class="btn" [class.btn-disabled]="detail.isLiked" [disabled]="detail.isLiked" (click)="like()">
@@ -21,7 +21,7 @@
       <h2>评论</h2>
       <ul>
         <li class="li-comment" *ngFor="let comment of detail.comments">
-          {{comment.comment}}
+          {{comment.commentContent}}
         </li>
         <br />
         <a href="javascript:;" *ngIf="detail.hasMoreComments" (click)="getMoreComments()">更多评论...</a>
