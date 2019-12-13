@@ -17,7 +17,7 @@
         </div>
         <textarea rows="5" placeholder="内容" formControlName="content"></textarea>
         <div class="div-new-segment-actions">
-          <button class="btn btn-raised" type="button" [disabled]="isSubmitDisabled" (click)="submitSegment()">提交</button>
+          <button class="btn" [class.btn-raised]="!isSubmitDisabled" [class.btn-disabled]="isSubmitDisabled" type="button" [disabled]="isSubmitDisabled" (click)="submitSegment()">提交</button>
           <span class="error" *ngIf="isContentInvalid">太短</span>
         </div>
       </form>
