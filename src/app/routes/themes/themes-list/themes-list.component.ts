@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemesService, ThemeItem } from '../../../services/themes.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
 
 @Component({
@@ -10,34 +9,27 @@ import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.servic
 })
 export class ThemesListComponent implements OnInit {
 
+  index = 1;
+  search = '';
+  state = '';
+
   detailId = 0;
-  listHeight = '80%';
+  listHeight = window.innerHeight * 0.75 + 'px';
   themes: ThemeItem[] = [];
 
   totalRows = 0;
 
   constructor(
     private theme: ThemesService,
-    private route: ActivatedRoute,
-    private router: Router,
     private snack: MfSnackBarService
   ) { }
 
   ngOnInit() {
-    let index = 1;
-    const indexParam = this.route.snapshot.paramMap.get('index');
-    if (indexParam) {
-      index = +indexParam;
-    }
-    const search = this.route.snapshot.paramMap.get('search');
-    const state = this.route.snapshot.paramMap.get('state');
-    this.getThemes(index, search, state);
-
-    this.listHeight = window.innerHeight * 0.75 + 'px';
+    this.getThemes();
   }
 
-  private getThemes(index: number, search: string, state: string) {
-    this.theme.getThemes(index, 20, search, state)
+  private getThemes() {
+    this.theme.getThemes(this.index, 20, this.search, this.state)
       .subscribe((data) => {
         if (data.isFault) {
           this.snack.open(data.message);
@@ -54,13 +46,10 @@ export class ThemesListComponent implements OnInit {
    */
   searchThemes(search: string) {
     if (!search || search.trim() === '') {
-      this.router.navigateByUrl('/themes');
-      this.getThemes(1, '', '');
-      return;
+      this.search = '';
     }
-
-    this.router.navigate(['/themes', {search}]);
-    this.getThemes(1, search, '');
+    this.index = 1;
+    this.getThemes();
   }
 
   /**
@@ -72,10 +61,7 @@ export class ThemesListComponent implements OnInit {
   }
 
   pageChange(index: number) {
-    const newParams = {
-      ...this.route.snapshot.params,
-      index
-    };
-    this.router.navigate(['/themes', newParams]);
+    this.index = index;
+    this.getThemes();
   }
 }

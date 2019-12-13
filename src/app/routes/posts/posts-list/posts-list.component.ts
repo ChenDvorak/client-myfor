@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService, PostItem } from '../../../services/posts.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
 
 @Component({
@@ -10,36 +9,27 @@ import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.servic
 })
 export class PostsListComponent implements OnInit {
 
+  index = 1;
   theme = '';
+  search = '';
+
   detailId = 0;
   posts: PostItem[] = [];
-  listHeight = '80%';
+  listHeight = window.innerHeight * 0.75 + 'px';
 
   totalRows = 0;
 
   constructor(
     private post: PostsService,
-    private route: ActivatedRoute,
-    private router: Router,
     private snack: MfSnackBarService
     ) { }
 
   ngOnInit() {
-    let index = 1;
-    const indexParam = this.route.snapshot.paramMap.get('index');
-    if (indexParam) {
-      index = +indexParam;
-    }
-    const search = this.route.snapshot.paramMap.get('search');
-    this.theme = this.route.snapshot.paramMap.get('theme');
-
-    this.getPosts(index, search, this.theme);
-
-    this.listHeight = window.innerHeight * 0.75 + 'px';
+    this.getPosts();
   }
 
-  private getPosts(index: number, search: string, theme: string) {
-    this.post.getPosts(index, 20, search, theme)
+  private getPosts() {
+    this.post.getPosts(this.index, 20, this.search, this.theme)
       .subscribe((data) => {
         if (data.isFault) {
           this.snack.open('获取失败, 请重试');
@@ -51,26 +41,12 @@ export class PostsListComponent implements OnInit {
   }
 
   searchPosts(search: string) {
-
-    let param: any;
-    let themeParam = {};
-    if (this.theme) {
-      themeParam = {
-        theme: this.theme
-      };
+    this.index = 1;
+    if (!search) {
+      return;
     }
-
-    if (search) {
-      param = {
-        search,
-        ...themeParam
-      };
-    } else {
-      param = {
-        ...themeParam
-      };
-    }
-    this.router.navigate(['/posts', param]);
+    this.search = search;
+    this.getPosts();
   }
 
   showDetail(id: number) {
@@ -78,10 +54,7 @@ export class PostsListComponent implements OnInit {
   }
 
   pageChange(index: number) {
-    const newParams = {
-      ...this.route.snapshot.params,
-      index
-    };
-    this.router.navigate(['/posts', newParams]);
+    this.index = index;
+    this.getPosts();
   }
 }

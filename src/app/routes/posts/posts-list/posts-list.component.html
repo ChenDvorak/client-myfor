@@ -40,7 +40,7 @@
         </ul>
       </div>
       <div class="div-pagination">
-        <nz-pagination [nzTotal]="totalRows" [nzPageSize]="20" [nzSize]="'small'" (nzPageIndexChange)="pageChange($event)">
+        <nz-pagination [(nzPageIndex)]="index" [nzTotal]="totalRows" [nzPageSize]="20" [nzSize]="'small'" (nzPageIndexChange)="pageChange($event)">
         </nz-pagination>
       </div>
     </div>

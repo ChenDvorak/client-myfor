@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SegmentsService, SegmentItem, NewSegment } from '../../../services/segments.service';
-import { Result } from '../../../services/common';
 import { MfSnackBarService } from '../../../services/MFStyle/mf-snack-bar.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { timer } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 
@@ -13,6 +11,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class SegmentsListComponent implements OnInit {
 
+  index = 1;
+  order = '';
   totalRows = 0;
   segments: SegmentItem[] = [];
   writeSegment = false;
@@ -37,27 +37,19 @@ export class SegmentsListComponent implements OnInit {
 
   constructor(
     private segment: SegmentsService,
-    private route: ActivatedRoute,
-    private router: Router,
     private snack: MfSnackBarService,
     private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-    let index = 1;
-    const indexParam = this.route.snapshot.paramMap.get('index');
-    if (indexParam) {
-      index = +indexParam;
-    }
-
-    this.getSegments(index);
+    this.getSegments();
   }
 
-  private getSegments(index: number) {
-    this.segment.getSegments(index, 20)
+  private getSegments() {
+    this.segment.getSegments(this.index, 20, this.order)
       .subscribe((data) => {
         if (data.isFault) {
-          this.snack.open('获取失败, 请重试');
+          this.snack.open(data.message);
         } else {
           this.totalRows = data.data.totalRows;
           this.segments = data.data.list;
@@ -69,12 +61,15 @@ export class SegmentsListComponent implements OnInit {
     this.writeSegment = !this.writeSegment;
   }
 
+  orderChange(order: string) {
+    this.index = 1;
+    this.order = order;
+    this.getSegments();
+  }
+
   pageChange(index: number) {
-    const newParams = {
-      ...this.route.snapshot.params,
-      index
-    };
-    this.router.navigate(['/segments', newParams]);
+    this.index = index;
+    this.getSegments();
   }
 
   like(id: number) {
@@ -106,7 +101,7 @@ export class SegmentsListComponent implements OnInit {
     this.segment.newSegment(info)
       .subscribe((data) => {
         if (data.isFault) {
-          this.snack.open('提交失败, 请重试');
+          this.snack.open(data.message);
         } else {
           this.snack.open('提交成功');
         }

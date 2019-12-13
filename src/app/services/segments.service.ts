@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, catchError, debounceTime } from 'rxjs/operators';
 
@@ -52,8 +52,14 @@ export class SegmentsService {
    * @param index 当前页码
    * @param rows 行数
    */
-  getSegments(index: number, rows: number): Observable<Result<Paginator<SegmentItem>>> {
-    const url = `assets/mocks/segments.json`;
+  getSegments(index: number, rows: number, order: string): Observable<Result<Paginator<SegmentItem>>> {
+    // const url = `assets/mocks/segments.json`;
+    const param = new HttpParams()
+      .set('index', index.toString())
+      .set('rows', rows.toString())
+      .set('order', order);
+
+    const url = `client/api/segments?${param.toString()}`;
     return this.http.get<Result<Paginator<SegmentItem>>>(url)
       .pipe(
         retry(2),
@@ -65,8 +71,12 @@ export class SegmentsService {
    * 新段子
    */
   newSegment(info: NewSegment): Observable<Result> {
+    const form = new FormData();
+    form.set('content', info.content);
+    form.set('nickName', info.nickName);
+
     const url = `client/api/segments`;
-    return this.http.post<Result>(url, info)
+    return this.http.post<Result>(url, form)
       .pipe(
         debounceTime(500),
         catchError(this.base.handleError)

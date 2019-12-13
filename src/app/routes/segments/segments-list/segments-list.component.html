@@ -25,8 +25,8 @@
   </div>
   <div class="div-list">
     <div class="div-order">
-      <a [routerLink]="['/segments', {state: 'week'}]">一周热门</a>
-      <a [routerLink]="['/segments']">最新</a>
+      <a href="javascript:;" (click)="orderChange('week')">一周热门</a>
+      <a href="javascript:;" (click)="orderChange('')">最新</a>
     </div>
     <ul class="ul-segments">
       <li class="li-segment" *ngFor="let segment of segments">
@@ -41,7 +41,7 @@
       </li>
     </ul>
     <div class="div-pagination">
-      <nz-pagination [nzTotal]="totalRows" [nzPageSize]="20" [nzSize]="'small'"
+      <nz-pagination [(nzPageIndex)]="index" [nzTotal]="totalRows" [nzPageSize]="20" [nzSize]="'small'"
         (nzPageIndexChange)="pageChange($event)">
       </nz-pagination>
     </div>

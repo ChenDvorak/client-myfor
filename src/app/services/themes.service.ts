@@ -100,7 +100,7 @@ export class ThemesService {
   getThemeDetail(id: number): Observable<Result<ThemeDetail>> {
     // const url = `assets/mocks/theme.json`;
     const url = `client/api/themes/${id}`;
-    console.log(url);
+    // console.log(url);
     return this.http.get<Result<ThemeDetail>>(url)
       .pipe(
         debounceTime(500),
