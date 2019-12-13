@@ -98,7 +98,9 @@ export class ThemesService {
    * @param id 详情 ID
    */
   getThemeDetail(id: number): Observable<Result<ThemeDetail>> {
-    const url = `assets/mocks/theme.json`;
+    // const url = `assets/mocks/theme.json`;
+    const url = `client/api/themes/${id}`;
+    console.log(url);
     return this.http.get<Result<ThemeDetail>>(url)
       .pipe(
         debounceTime(500),

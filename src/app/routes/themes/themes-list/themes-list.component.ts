@@ -40,7 +40,7 @@ export class ThemesListComponent implements OnInit {
     this.theme.getThemes(index, 20, search, state)
       .subscribe((data) => {
         if (data.isFault) {
-          this.snack.open('获取失败, 请重试');
+          this.snack.open(data.message);
         } else {
           this.totalRows = data.data.totalRows;
           this.themes = data.data.list;

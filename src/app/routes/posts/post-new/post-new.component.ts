@@ -18,7 +18,7 @@ export class PostNewComponent implements OnInit {
   /**
    * 内容框高度
    */
-  textareaHeight = '200px';
+  textareaHeight = `${window.innerHeight * 0.6}px`;
   submitDisabled = false;
   /**
    * 提示的主题名
@@ -61,7 +61,7 @@ export class PostNewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.textareaHeight = window.innerHeight * 0.75 + `px`;
+    // this.textareaHeight = window.innerHeight * 0.65 + `px`;
 
     this.resetThemeNameEvent();
   }

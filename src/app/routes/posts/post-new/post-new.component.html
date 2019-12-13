@@ -9,11 +9,13 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div>
           <span>所属主题 : </span>
-          <input type="text" #txt_theme formControlName="theme" placeholder="简单分个主题"
-            (keyup)="themeTypeAhead(txt_theme.value)" />
-          <ul class="ul-typeahead">
-            <li (click)="selectType(theme)" *ngFor="let theme of themeName$ | async">{{theme}}</li>
-          </ul>
+          <span>
+            <input type="text" #txt_theme formControlName="theme" placeholder="简单分个主题"
+              (keyup)="themeTypeAhead(txt_theme.value)" />
+            <ul class="ul-typeahead">
+              <li (click)="selectType(theme)" *ngFor="let theme of themeName$ | async">{{theme}}</li>
+            </ul>
+          </span>
           <span class="font-gray"> 不填或者主题不存在, 会自动分入<span class="font-red">无主题</span></span>
         </div>
 
