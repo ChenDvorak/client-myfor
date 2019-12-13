@@ -16,6 +16,7 @@ export class SegmentsListComponent implements OnInit {
   totalRows = 0;
   segments: SegmentItem[] = [];
   writeSegment = false;
+  isSubmitDisabled = false;
 
   newSegmentForm = this.fb.group({
     nickName: ['', [Validators.required, Validators.minLength(2)]],
@@ -94,6 +95,7 @@ export class SegmentsListComponent implements OnInit {
       this.snack.open('内容太短');
       return;
     }
+    this.isSubmitDisabled = true;
     const info: NewSegment = {
       nickName: this.newSegmentForm.get('nickName').value,
       content: this.newSegmentForm.get('content').value
@@ -104,7 +106,11 @@ export class SegmentsListComponent implements OnInit {
           this.snack.open(data.message);
         } else {
           this.snack.open('提交成功');
+          this.getSegments();
         }
+        timer(3000).subscribe(() => {
+          this.isSubmitDisabled = false;
+        });
       });
   }
 }
