@@ -82,4 +82,15 @@ export class SegmentsService {
         catchError(this.base.handleError)
       );
   }
+
+  liked(id: number): Observable<Result> {
+    const url = `client/api/segments/liked/${id}`;
+
+    return this.http.patch<Result>(url, '')
+      .pipe(
+        retry(1),
+        debounceTime(500),
+        catchError(this.base.handleError)
+      );
+  }
 }

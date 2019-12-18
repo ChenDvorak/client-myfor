@@ -10,14 +10,15 @@
     </div>
     <div class="div-new" *ngIf="writeSegment">
       <form class="fom-new" [formGroup]="newSegmentForm">
-        <input type="text" formControlName="nickName" placeholder="昵称"/>
+        <input type="text" formControlName="nickName" placeholder="昵称" />
         <div class="div-new-segment-tip">
           <!-- <span class="error" *ngIf="isNickNameInvalid">太短</span> -->
           <span style="color: #aaa;">昵称最短两位</span>
         </div>
         <textarea rows="5" placeholder="内容" formControlName="content"></textarea>
         <div class="div-new-segment-actions">
-          <button class="btn" [class.btn-raised]="!isSubmitDisabled" [class.btn-disabled]="isSubmitDisabled" type="button" [disabled]="isSubmitDisabled" (click)="submitSegment()">提交</button>
+          <button class="btn" [class.btn-raised]="!isSubmitDisabled" [class.btn-disabled]="isSubmitDisabled"
+            type="button" [disabled]="isSubmitDisabled" (click)="submitSegment()">提交</button>
           <span class="error" *ngIf="isContentInvalid">太短</span>
         </div>
       </form>
@@ -29,19 +30,20 @@
       <a href="javascript:;" (click)="orderChange('')">最新</a>
     </div>
     <ul class="ul-segments">
-      <li class="li-segment" *ngFor="let segment of segments">
+      <li class="li-segment" *ngFor="let segment of segments; let i = index">
         <div class="div-segment-item">
           <div class="div-nickname">{{segment.nickName}}</div>
           <div class="div-content">{{segment.content}}</div>
           <div class="div-date">
             <span class="spn-date">{{segment.date}}</span>
-            <button class="btn-primary" id="btn_{{segment.id}}" (click)="like(segment.id)">like : {{segment.likes}}</button>
+            <button class="btn-primary" id="btn_like_{{segment.id}}" (click)="like(segment.id, i)">like :
+              {{segment.likes}}</button>
           </div>
         </div>
       </li>
     </ul>
     <div class="div-pagination">
-      <nz-pagination [(nzPageIndex)]="index" [nzTotal]="totalRows" [nzPageSize]="20" [nzSize]="'small'"
+      <nz-pagination [nzTotal]="totalRows" [nzPageSize]="20" [nzSize]="'small'"
         (nzPageIndexChange)="pageChange($event)">
       </nz-pagination>
     </div>

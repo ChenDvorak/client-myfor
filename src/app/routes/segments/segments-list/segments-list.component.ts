@@ -73,8 +73,15 @@ export class SegmentsListComponent implements OnInit {
     this.getSegments();
   }
 
-  like(id: number) {
-    const btn = document.getElementById(`btn_${id}`);
+  like(id: number, index: number) {
+    // console.log(`${id} -- ${index}`);
+    //  some problom
+    this.segment.liked(id)
+      .subscribe(() => {
+        this.segments[index].likes++;
+      });
+
+    const btn = document.getElementById(`btn_like_${id}`);
     btn.classList.add('btn-disabled');
     btn.setAttribute('disabled', 'disabled');
     timer(5000).subscribe(() => {
